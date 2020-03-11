@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Servicios.EntidadesDelDominio.Excepciones
 {
-    public class CalificacionException
+    public class CalificarHabitacionException
     {
     }
 }
