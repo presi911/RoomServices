@@ -9,6 +9,8 @@ namespace Servicios.EntidadesDelDominio.Abstractas
     {
 
         string Cedula { get; set; }
+
+
         string Nombre { get; set; }
         string Apellido { get; set; }
         DateTime Fecha { get; set; }
