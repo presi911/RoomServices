@@ -7,5 +7,6 @@ namespace Servicios.EntidadesDelDominio.Entidades
 {
     public class AlbumFotografico
     {
+
     }
 }
