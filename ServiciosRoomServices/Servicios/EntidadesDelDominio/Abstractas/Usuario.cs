@@ -25,5 +25,6 @@ namespace Servicios.EntidadesDelDominio.Abstractas
             Genero = genero;
         }
 
+
     }
 }
