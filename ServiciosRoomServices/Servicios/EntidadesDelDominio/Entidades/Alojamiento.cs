@@ -11,7 +11,7 @@ namespace Servicios.EntidadesDelDominio.Entidades
         string DescripcionAlojamiento { get; set; }
         private double precio;
         string TipoAlojamiento { get; set; }
-        int IdAlojamiento { get; set; }
+        int IdAlojamiento { get;  }
 
 
         public Alojamiento(string titulo, string descripcionAlojamiento, double precio, string tipoAlojamiento, int idAlojamiento)

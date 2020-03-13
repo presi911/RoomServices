@@ -8,13 +8,14 @@ namespace Servicios.EntidadesDelDominio.Entidades
     public class CuentaUsuario
     {
 
-        private string email; 
+        string Email { get; } 
         string Contrasena { get; set; }
 
         public CuentaUsuario(string email, string contrasena)
         {
-            this.email = email;
+            Email = email;
             Contrasena = contrasena;
         }
+
     }
 }

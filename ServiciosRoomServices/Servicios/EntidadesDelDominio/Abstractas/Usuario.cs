@@ -8,7 +8,9 @@ namespace Servicios.EntidadesDelDominio.Abstractas
     public abstract class Usuario
     {
 
-        string Cedula { get; set}
+        string Cedula { get; set; }
+
+
         string Nombre { get; set; }
         string Apellido { get; set; }
         DateTime Fecha { get; set; }
@@ -28,3 +30,4 @@ namespace Servicios.EntidadesDelDominio.Abstractas
 
     }
 }
+
