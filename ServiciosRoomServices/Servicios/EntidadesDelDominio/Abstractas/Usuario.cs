@@ -7,5 +7,6 @@ namespace Servicios.EntidadesDelDominio.Abstractas
 {
     public class Usuario
     {
+
     }
 }
