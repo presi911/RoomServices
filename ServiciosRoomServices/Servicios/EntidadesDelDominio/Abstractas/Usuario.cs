@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Servicios.EntidadesDelDominio.Entidades;
 
 namespace Servicios.EntidadesDelDominio.Abstractas
 {
@@ -14,7 +15,8 @@ namespace Servicios.EntidadesDelDominio.Abstractas
         DateTime Fecha { get; set; }
         string Nacionalidad { get; set; }
         char Genero { get; set; }
-        Cuenta cuenta;
+
+        CuentaBancaria cuentaBancaria;
         CuentaUsuario cuentaUsuario;
 
         protected Usuario(string cedula, string nombre, string apellido, DateTime fecha, string nacionalidad, char genero)
