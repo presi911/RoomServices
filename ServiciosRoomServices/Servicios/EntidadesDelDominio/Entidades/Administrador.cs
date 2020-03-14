@@ -7,5 +7,19 @@ namespace Servicios.EntidadesDelDominio.Entidades
 {
     public class Administrador
     {
+        int CedulaAdministrador { get; set; }
+        string NombreAdministrador { get; set; }
+
+
+        public Administrador(int CedulaAdministrador, string NombreAdministrador)
+        {
+
+            CedulaAdministrador = CedulaAdministrador;
+            NombreAdministrador = NombreAdministrador;
+        
+        }
     }
 }
+
+
+
