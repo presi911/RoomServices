@@ -14,6 +14,8 @@ namespace Servicios.EntidadesDelDominio.Abstractas
         DateTime Fecha { get; set; }
         string Nacionalidad { get; set; }
         char Genero { get; set; }
+        Cuenta cuenta;
+        CuentaUsuario cuentaUsuario;
 
         protected Usuario(string cedula, string nombre, string apellido, DateTime fecha, string nacionalidad, char genero)
         {
