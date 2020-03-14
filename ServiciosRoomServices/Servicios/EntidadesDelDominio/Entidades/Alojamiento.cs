@@ -12,6 +12,8 @@ namespace Servicios.EntidadesDelDominio.Entidades
         private double precio;
         string TipoAlojamiento { get; set; }
         int IdAlojamiento { get;  }
+        Arrendatario arrendatario;
+        List<AlbumFotografico> fotos;
 
 
         public Alojamiento(string titulo, string descripcionAlojamiento, double precio, string tipoAlojamiento, int idAlojamiento)
