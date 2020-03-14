@@ -20,7 +20,7 @@ namespace Servicios.EntidadesDelDominio.Entidades
         /// <param name="fecha"></param>
         /// <param name="nacionalidad"></param>
         /// <param name="genero"></param>
-        /// <param name="tipoArrendador"></param>
+        /// <param name="tipoArrendador"><a</param>
         public Arrendatario(string cedula, string nombre, string apellido, DateTime fecha, string nacionalidad, char genero, string tipoArrendador) : base(cedula, nombre, apellido, fecha, nacionalidad, genero)
         {
             TipoArrendador = tipoArrendador;
