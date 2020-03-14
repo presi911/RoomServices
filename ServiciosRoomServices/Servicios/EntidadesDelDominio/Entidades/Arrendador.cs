@@ -9,7 +9,7 @@ namespace Servicios.EntidadesDelDominio.Entidades
     public class Arrendador : Usuario
     {
         int IdArrendador { get;}
-        
+        List<Alojamiento> listAlojamiento;
         /// <summary>
         /// Permite realizar la instanciación de un Arrendador en la plataforma
         /// </summary>
