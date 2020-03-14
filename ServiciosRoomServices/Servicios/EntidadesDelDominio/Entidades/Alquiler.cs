@@ -9,9 +9,8 @@ namespace Servicios.EntidadesDelDominio.Entidades
     {
         DateTime FechaAlquiler { get; set; }
         int NumeroContrato { get; set; }
-        
         private byte numeroMeses;
-        
+        Alojamiento alojamiento;
         private double pagoMensual;
 
 

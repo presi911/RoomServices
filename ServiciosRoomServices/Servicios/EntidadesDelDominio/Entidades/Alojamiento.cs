@@ -14,6 +14,7 @@ namespace Servicios.EntidadesDelDominio.Entidades
         int IdAlojamiento { get;  }
         Arrendatario arrendatario;
         List<AlbumFotografico> fotos;
+        List<Calificacion> calificaciones;
 
 
         public Alojamiento(string titulo, string descripcionAlojamiento, double precio, string tipoAlojamiento, int idAlojamiento)
