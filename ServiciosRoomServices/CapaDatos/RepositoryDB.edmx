@@ -1,0 +1,961 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RoomServicesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administradores">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AlbumFotograficos">
+          <Key>
+            <PropertyRef Name="idFotografia" />
+          </Key>
+          <Property Name="idFotografia" Type="int" Nullable="false" />
+          <Property Name="nombreArchivo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="formato" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="rutaGuardado" Type="text" Nullable="false" />
+          <Property Name="idAlojamiento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Alojamientos">
+          <Key>
+            <PropertyRef Name="idAlojamiento" />
+          </Key>
+          <Property Name="idAlojamiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titulo" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="descripcionAlojamiento" Type="ntext" />
+          <Property Name="precio" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="tipoAlojamiento" Type="nchar" MaxLength="30" />
+          <Property Name="idUbicacion" Type="int" Nullable="false" />
+          <Property Name="cedulaArrendador" Type="nvarchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AlquilersAlojamientos">
+          <Key>
+            <PropertyRef Name="numeroContrato" />
+          </Key>
+          <Property Name="numeroContrato" Type="int" Nullable="false" />
+          <Property Name="numeroMeses" Type="int" Nullable="false" />
+          <Property Name="pagoMensual" Type="numeric" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="fechaAlquiler" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="idAlojamiento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Arrendadores">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="idArrendador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cedula" Type="nvarchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Arrendatarios">
+          <Key>
+            <PropertyRef Name="cedulaArrendatario" />
+          </Key>
+          <Property Name="idArrendatario" Type="int" Nullable="false" />
+          <Property Name="tipoArrendador" Type="nchar" MaxLength="10" />
+          <Property Name="cedulaArrendatario" Type="nvarchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Calificaciones">
+          <Key>
+            <PropertyRef Name="idCalificacion" />
+          </Key>
+          <Property Name="idCalificacion" Type="int" Nullable="false" />
+          <Property Name="comentarioAlojamiento" Type="text" />
+          <Property Name="calificacionAlojamiento" Type="int" />
+        </EntityType>
+        <EntityType Name="CalificacionesAlojamiento">
+          <Key>
+            <PropertyRef Name="idCalificacion" />
+            <PropertyRef Name="cedulaArrendatario" />
+            <PropertyRef Name="idAlojamiento" />
+            <PropertyRef Name="fechaCalificacion" />
+          </Key>
+          <Property Name="idCalificacion" Type="int" Nullable="false" />
+          <Property Name="cedulaArrendatario" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="idAlojamiento" Type="int" Nullable="false" />
+          <Property Name="fechaCalificacion" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CalificacionesArrendatario">
+          <Key>
+            <PropertyRef Name="idCalificacion" />
+            <PropertyRef Name="cedulaArrendatario" />
+            <PropertyRef Name="cedulaArrendador" />
+            <PropertyRef Name="fechaCalificacion" />
+          </Key>
+          <Property Name="idCalificacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cedulaArrendatario" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="cedulaArrendador" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="fechaCalificacion" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CuentasBancarias">
+          <Key>
+            <PropertyRef Name="numeroCuenta" />
+          </Key>
+          <Property Name="numeroCuenta" Type="int" Nullable="false" />
+          <Property Name="saldoCuenta" Type="numeric" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="cedula" Type="nvarchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CuentasUsuarios">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="contrasena" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cedulaUsuario" Type="nvarchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ubicaciones">
+          <Key>
+            <PropertyRef Name="idUbicacion" />
+          </Key>
+          <Property Name="idUbicacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreCiudad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombreDepartamento" Type="nvarchar" MaxLength="50" />
+          <Property Name="direccion" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="descripcion" Type="text" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="apellido" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="date" />
+          <Property Name="nacionalidad" Type="nvarchar" MaxLength="50" />
+          <Property Name="genero" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AlbumFotograficos_Alojamientos">
+          <End Role="Alojamientos" Type="Self.Alojamientos" Multiplicity="1" />
+          <End Role="AlbumFotograficos" Type="Self.AlbumFotograficos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alojamientos">
+              <PropertyRef Name="idAlojamiento" />
+            </Principal>
+            <Dependent Role="AlbumFotograficos">
+              <PropertyRef Name="idAlojamiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alojamientos_Arrendadores">
+          <End Role="Arrendadores" Type="Self.Arrendadores" Multiplicity="1" />
+          <End Role="Alojamientos" Type="Self.Alojamientos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arrendadores">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Alojamientos">
+              <PropertyRef Name="cedulaArrendador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alojamientos_Ubicaciones">
+          <End Role="Ubicaciones" Type="Self.Ubicaciones" Multiplicity="1" />
+          <End Role="Alojamientos" Type="Self.Alojamientos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ubicaciones">
+              <PropertyRef Name="idUbicacion" />
+            </Principal>
+            <Dependent Role="Alojamientos">
+              <PropertyRef Name="idUbicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlquilersAlojamientos_Alojamientos">
+          <End Role="Alojamientos" Type="Self.Alojamientos" Multiplicity="1" />
+          <End Role="AlquilersAlojamientos" Type="Self.AlquilersAlojamientos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alojamientos">
+              <PropertyRef Name="idAlojamiento" />
+            </Principal>
+            <Dependent Role="AlquilersAlojamientos">
+              <PropertyRef Name="idAlojamiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Arrendadores_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Arrendadores" Type="Self.Arrendadores" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Arrendadores">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Arrendatarios_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Arrendatarios" Type="Self.Arrendatarios" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Arrendatarios">
+              <PropertyRef Name="cedulaArrendatario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalificacionesAlojamiento_Alojamientos">
+          <End Role="Alojamientos" Type="Self.Alojamientos" Multiplicity="1" />
+          <End Role="CalificacionesAlojamiento" Type="Self.CalificacionesAlojamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alojamientos">
+              <PropertyRef Name="idAlojamiento" />
+            </Principal>
+            <Dependent Role="CalificacionesAlojamiento">
+              <PropertyRef Name="idAlojamiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalificacionesAlojamiento_Arrendatarios">
+          <End Role="Arrendatarios" Type="Self.Arrendatarios" Multiplicity="1" />
+          <End Role="CalificacionesAlojamiento" Type="Self.CalificacionesAlojamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arrendatarios">
+              <PropertyRef Name="cedulaArrendatario" />
+            </Principal>
+            <Dependent Role="CalificacionesAlojamiento">
+              <PropertyRef Name="cedulaArrendatario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalificacionesAlojamiento_Calificaciones">
+          <End Role="Calificaciones" Type="Self.Calificaciones" Multiplicity="1" />
+          <End Role="CalificacionesAlojamiento" Type="Self.CalificacionesAlojamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calificaciones">
+              <PropertyRef Name="idCalificacion" />
+            </Principal>
+            <Dependent Role="CalificacionesAlojamiento">
+              <PropertyRef Name="idCalificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalificacionesArrendatario_Arrendadores">
+          <End Role="Arrendadores" Type="Self.Arrendadores" Multiplicity="1" />
+          <End Role="CalificacionesArrendatario" Type="Self.CalificacionesArrendatario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arrendadores">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="CalificacionesArrendatario">
+              <PropertyRef Name="cedulaArrendador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalificacionesArrendatario_Arrendatarios">
+          <End Role="Arrendatarios" Type="Self.Arrendatarios" Multiplicity="1" />
+          <End Role="CalificacionesArrendatario" Type="Self.CalificacionesArrendatario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arrendatarios">
+              <PropertyRef Name="cedulaArrendatario" />
+            </Principal>
+            <Dependent Role="CalificacionesArrendatario">
+              <PropertyRef Name="cedulaArrendatario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalificacionesArrendatario_Calificaciones">
+          <End Role="Calificaciones" Type="Self.Calificaciones" Multiplicity="1" />
+          <End Role="CalificacionesArrendatario" Type="Self.CalificacionesArrendatario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calificaciones">
+              <PropertyRef Name="idCalificacion" />
+            </Principal>
+            <Dependent Role="CalificacionesArrendatario">
+              <PropertyRef Name="idCalificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CuentasBancarias_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="CuentasBancarias" Type="Self.CuentasBancarias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="CuentasBancarias">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CuentasUsuarios_Administradores">
+          <End Role="Administradores" Type="Self.Administradores" Multiplicity="1" />
+          <End Role="CuentasUsuarios" Type="Self.CuentasUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administradores">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="CuentasUsuarios">
+              <PropertyRef Name="cedulaUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CuentasUsuarios_Usuarios1">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="CuentasUsuarios" Type="Self.CuentasUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="CuentasUsuarios">
+              <PropertyRef Name="cedulaUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RoomServicesModelStoreContainer">
+          <EntitySet Name="Administradores" EntityType="Self.Administradores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AlbumFotograficos" EntityType="Self.AlbumFotograficos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Alojamientos" EntityType="Self.Alojamientos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AlquilersAlojamientos" EntityType="Self.AlquilersAlojamientos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Arrendadores" EntityType="Self.Arrendadores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Arrendatarios" EntityType="Self.Arrendatarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Calificaciones" EntityType="Self.Calificaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CalificacionesAlojamiento" EntityType="Self.CalificacionesAlojamiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CalificacionesArrendatario" EntityType="Self.CalificacionesArrendatario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CuentasBancarias" EntityType="Self.CuentasBancarias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CuentasUsuarios" EntityType="Self.CuentasUsuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ubicaciones" EntityType="Self.Ubicaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AlbumFotograficos_Alojamientos" Association="Self.FK_AlbumFotograficos_Alojamientos">
+            <End Role="Alojamientos" EntitySet="Alojamientos" />
+            <End Role="AlbumFotograficos" EntitySet="AlbumFotograficos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alojamientos_Arrendadores" Association="Self.FK_Alojamientos_Arrendadores">
+            <End Role="Arrendadores" EntitySet="Arrendadores" />
+            <End Role="Alojamientos" EntitySet="Alojamientos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alojamientos_Ubicaciones" Association="Self.FK_Alojamientos_Ubicaciones">
+            <End Role="Ubicaciones" EntitySet="Ubicaciones" />
+            <End Role="Alojamientos" EntitySet="Alojamientos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlquilersAlojamientos_Alojamientos" Association="Self.FK_AlquilersAlojamientos_Alojamientos">
+            <End Role="Alojamientos" EntitySet="Alojamientos" />
+            <End Role="AlquilersAlojamientos" EntitySet="AlquilersAlojamientos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Arrendadores_Usuarios" Association="Self.FK_Arrendadores_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Arrendadores" EntitySet="Arrendadores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Arrendatarios_Usuarios" Association="Self.FK_Arrendatarios_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Arrendatarios" EntitySet="Arrendatarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalificacionesAlojamiento_Alojamientos" Association="Self.FK_CalificacionesAlojamiento_Alojamientos">
+            <End Role="Alojamientos" EntitySet="Alojamientos" />
+            <End Role="CalificacionesAlojamiento" EntitySet="CalificacionesAlojamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalificacionesAlojamiento_Arrendatarios" Association="Self.FK_CalificacionesAlojamiento_Arrendatarios">
+            <End Role="Arrendatarios" EntitySet="Arrendatarios" />
+            <End Role="CalificacionesAlojamiento" EntitySet="CalificacionesAlojamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalificacionesAlojamiento_Calificaciones" Association="Self.FK_CalificacionesAlojamiento_Calificaciones">
+            <End Role="Calificaciones" EntitySet="Calificaciones" />
+            <End Role="CalificacionesAlojamiento" EntitySet="CalificacionesAlojamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalificacionesArrendatario_Arrendadores" Association="Self.FK_CalificacionesArrendatario_Arrendadores">
+            <End Role="Arrendadores" EntitySet="Arrendadores" />
+            <End Role="CalificacionesArrendatario" EntitySet="CalificacionesArrendatario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalificacionesArrendatario_Arrendatarios" Association="Self.FK_CalificacionesArrendatario_Arrendatarios">
+            <End Role="Arrendatarios" EntitySet="Arrendatarios" />
+            <End Role="CalificacionesArrendatario" EntitySet="CalificacionesArrendatario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalificacionesArrendatario_Calificaciones" Association="Self.FK_CalificacionesArrendatario_Calificaciones">
+            <End Role="Calificaciones" EntitySet="Calificaciones" />
+            <End Role="CalificacionesArrendatario" EntitySet="CalificacionesArrendatario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuentasBancarias_Usuarios" Association="Self.FK_CuentasBancarias_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="CuentasBancarias" EntitySet="CuentasBancarias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuentasUsuarios_Administradores" Association="Self.FK_CuentasUsuarios_Administradores">
+            <End Role="Administradores" EntitySet="Administradores" />
+            <End Role="CuentasUsuarios" EntitySet="CuentasUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuentasUsuarios_Usuarios1" Association="Self.FK_CuentasUsuarios_Usuarios1">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="CuentasUsuarios" EntitySet="CuentasUsuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RoomServicesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administradores">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CuentasUsuarios" Relationship="Self.FK_CuentasUsuarios_Administradores" FromRole="Administradores" ToRole="CuentasUsuarios" />
+        </EntityType>
+        <EntityType Name="AlbumFotograficos">
+          <Key>
+            <PropertyRef Name="idFotografia" />
+          </Key>
+          <Property Name="idFotografia" Type="Int32" Nullable="false" />
+          <Property Name="nombreArchivo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="formato" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="rutaGuardado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idAlojamiento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Alojamientos" Relationship="Self.FK_AlbumFotograficos_Alojamientos" FromRole="AlbumFotograficos" ToRole="Alojamientos" />
+        </EntityType>
+        <EntityType Name="Alojamientos">
+          <Key>
+            <PropertyRef Name="idAlojamiento" />
+          </Key>
+          <Property Name="idAlojamiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcionAlojamiento" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="precio" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="tipoAlojamiento" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="idUbicacion" Type="Int32" Nullable="false" />
+          <Property Name="cedulaArrendador" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AlbumFotograficos" Relationship="Self.FK_AlbumFotograficos_Alojamientos" FromRole="Alojamientos" ToRole="AlbumFotograficos" />
+          <NavigationProperty Name="Arrendadores" Relationship="Self.FK_Alojamientos_Arrendadores" FromRole="Alojamientos" ToRole="Arrendadores" />
+          <NavigationProperty Name="Ubicaciones" Relationship="Self.FK_Alojamientos_Ubicaciones" FromRole="Alojamientos" ToRole="Ubicaciones" />
+          <NavigationProperty Name="AlquilersAlojamientos" Relationship="Self.FK_AlquilersAlojamientos_Alojamientos" FromRole="Alojamientos" ToRole="AlquilersAlojamientos" />
+          <NavigationProperty Name="CalificacionesAlojamiento" Relationship="Self.FK_CalificacionesAlojamiento_Alojamientos" FromRole="Alojamientos" ToRole="CalificacionesAlojamiento" />
+        </EntityType>
+        <EntityType Name="AlquilersAlojamientos">
+          <Key>
+            <PropertyRef Name="numeroContrato" />
+          </Key>
+          <Property Name="numeroContrato" Type="Int32" Nullable="false" />
+          <Property Name="numeroMeses" Type="Int32" Nullable="false" />
+          <Property Name="pagoMensual" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="fechaAlquiler" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="idAlojamiento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Alojamientos" Relationship="Self.FK_AlquilersAlojamientos_Alojamientos" FromRole="AlquilersAlojamientos" ToRole="Alojamientos" />
+        </EntityType>
+        <EntityType Name="Arrendadores">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="idArrendador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cedula" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Alojamientos" Relationship="Self.FK_Alojamientos_Arrendadores" FromRole="Arrendadores" ToRole="Alojamientos" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Arrendadores_Usuarios" FromRole="Arrendadores" ToRole="Usuarios" />
+          <NavigationProperty Name="CalificacionesArrendatario" Relationship="Self.FK_CalificacionesArrendatario_Arrendadores" FromRole="Arrendadores" ToRole="CalificacionesArrendatario" />
+        </EntityType>
+        <EntityType Name="Arrendatarios">
+          <Key>
+            <PropertyRef Name="cedulaArrendatario" />
+          </Key>
+          <Property Name="idArrendatario" Type="Int32" Nullable="false" />
+          <Property Name="tipoArrendador" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="cedulaArrendatario" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Arrendatarios_Usuarios" FromRole="Arrendatarios" ToRole="Usuarios" />
+          <NavigationProperty Name="CalificacionesAlojamiento" Relationship="Self.FK_CalificacionesAlojamiento_Arrendatarios" FromRole="Arrendatarios" ToRole="CalificacionesAlojamiento" />
+          <NavigationProperty Name="CalificacionesArrendatario" Relationship="Self.FK_CalificacionesArrendatario_Arrendatarios" FromRole="Arrendatarios" ToRole="CalificacionesArrendatario" />
+        </EntityType>
+        <EntityType Name="Calificaciones">
+          <Key>
+            <PropertyRef Name="idCalificacion" />
+          </Key>
+          <Property Name="idCalificacion" Type="Int32" Nullable="false" />
+          <Property Name="comentarioAlojamiento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="calificacionAlojamiento" Type="Int32" />
+          <NavigationProperty Name="CalificacionesAlojamiento" Relationship="Self.FK_CalificacionesAlojamiento_Calificaciones" FromRole="Calificaciones" ToRole="CalificacionesAlojamiento" />
+          <NavigationProperty Name="CalificacionesArrendatario" Relationship="Self.FK_CalificacionesArrendatario_Calificaciones" FromRole="Calificaciones" ToRole="CalificacionesArrendatario" />
+        </EntityType>
+        <EntityType Name="CalificacionesAlojamiento">
+          <Key>
+            <PropertyRef Name="idCalificacion" />
+            <PropertyRef Name="cedulaArrendatario" />
+            <PropertyRef Name="idAlojamiento" />
+            <PropertyRef Name="fechaCalificacion" />
+          </Key>
+          <Property Name="idCalificacion" Type="Int32" Nullable="false" />
+          <Property Name="cedulaArrendatario" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="idAlojamiento" Type="Int32" Nullable="false" />
+          <Property Name="fechaCalificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Alojamientos" Relationship="Self.FK_CalificacionesAlojamiento_Alojamientos" FromRole="CalificacionesAlojamiento" ToRole="Alojamientos" />
+          <NavigationProperty Name="Arrendatarios" Relationship="Self.FK_CalificacionesAlojamiento_Arrendatarios" FromRole="CalificacionesAlojamiento" ToRole="Arrendatarios" />
+          <NavigationProperty Name="Calificaciones" Relationship="Self.FK_CalificacionesAlojamiento_Calificaciones" FromRole="CalificacionesAlojamiento" ToRole="Calificaciones" />
+        </EntityType>
+        <EntityType Name="CalificacionesArrendatario">
+          <Key>
+            <PropertyRef Name="idCalificacion" />
+            <PropertyRef Name="cedulaArrendatario" />
+            <PropertyRef Name="cedulaArrendador" />
+            <PropertyRef Name="fechaCalificacion" />
+          </Key>
+          <Property Name="idCalificacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cedulaArrendatario" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cedulaArrendador" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fechaCalificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Arrendadores" Relationship="Self.FK_CalificacionesArrendatario_Arrendadores" FromRole="CalificacionesArrendatario" ToRole="Arrendadores" />
+          <NavigationProperty Name="Arrendatarios" Relationship="Self.FK_CalificacionesArrendatario_Arrendatarios" FromRole="CalificacionesArrendatario" ToRole="Arrendatarios" />
+          <NavigationProperty Name="Calificaciones" Relationship="Self.FK_CalificacionesArrendatario_Calificaciones" FromRole="CalificacionesArrendatario" ToRole="Calificaciones" />
+        </EntityType>
+        <EntityType Name="CuentasBancarias">
+          <Key>
+            <PropertyRef Name="numeroCuenta" />
+          </Key>
+          <Property Name="numeroCuenta" Type="Int32" Nullable="false" />
+          <Property Name="saldoCuenta" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="cedula" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_CuentasBancarias_Usuarios" FromRole="CuentasBancarias" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="CuentasUsuarios">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cedulaUsuario" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Administradores" Relationship="Self.FK_CuentasUsuarios_Administradores" FromRole="CuentasUsuarios" ToRole="Administradores" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_CuentasUsuarios_Usuarios1" FromRole="CuentasUsuarios" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Ubicaciones">
+          <Key>
+            <PropertyRef Name="idUbicacion" />
+          </Key>
+          <Property Name="idUbicacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreCiudad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombreDepartamento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="direccion" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Alojamientos" Relationship="Self.FK_Alojamientos_Ubicaciones" FromRole="Ubicaciones" ToRole="Alojamientos" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="genero" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Arrendadores" Relationship="Self.FK_Arrendadores_Usuarios" FromRole="Usuarios" ToRole="Arrendadores" />
+          <NavigationProperty Name="Arrendatarios" Relationship="Self.FK_Arrendatarios_Usuarios" FromRole="Usuarios" ToRole="Arrendatarios" />
+          <NavigationProperty Name="CuentasBancarias" Relationship="Self.FK_CuentasBancarias_Usuarios" FromRole="Usuarios" ToRole="CuentasBancarias" />
+          <NavigationProperty Name="CuentasUsuarios" Relationship="Self.FK_CuentasUsuarios_Usuarios1" FromRole="Usuarios" ToRole="CuentasUsuarios" />
+        </EntityType>
+        <Association Name="FK_CuentasUsuarios_Administradores">
+          <End Role="Administradores" Type="Self.Administradores" Multiplicity="1" />
+          <End Role="CuentasUsuarios" Type="Self.CuentasUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administradores">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="CuentasUsuarios">
+              <PropertyRef Name="cedulaUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlbumFotograficos_Alojamientos">
+          <End Role="Alojamientos" Type="Self.Alojamientos" Multiplicity="1" />
+          <End Role="AlbumFotograficos" Type="Self.AlbumFotograficos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alojamientos">
+              <PropertyRef Name="idAlojamiento" />
+            </Principal>
+            <Dependent Role="AlbumFotograficos">
+              <PropertyRef Name="idAlojamiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alojamientos_Arrendadores">
+          <End Role="Arrendadores" Type="Self.Arrendadores" Multiplicity="1" />
+          <End Role="Alojamientos" Type="Self.Alojamientos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arrendadores">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Alojamientos">
+              <PropertyRef Name="cedulaArrendador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alojamientos_Ubicaciones">
+          <End Role="Ubicaciones" Type="Self.Ubicaciones" Multiplicity="1" />
+          <End Role="Alojamientos" Type="Self.Alojamientos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ubicaciones">
+              <PropertyRef Name="idUbicacion" />
+            </Principal>
+            <Dependent Role="Alojamientos">
+              <PropertyRef Name="idUbicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlquilersAlojamientos_Alojamientos">
+          <End Role="Alojamientos" Type="Self.Alojamientos" Multiplicity="1" />
+          <End Role="AlquilersAlojamientos" Type="Self.AlquilersAlojamientos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alojamientos">
+              <PropertyRef Name="idAlojamiento" />
+            </Principal>
+            <Dependent Role="AlquilersAlojamientos">
+              <PropertyRef Name="idAlojamiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalificacionesAlojamiento_Alojamientos">
+          <End Role="Alojamientos" Type="Self.Alojamientos" Multiplicity="1" />
+          <End Role="CalificacionesAlojamiento" Type="Self.CalificacionesAlojamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alojamientos">
+              <PropertyRef Name="idAlojamiento" />
+            </Principal>
+            <Dependent Role="CalificacionesAlojamiento">
+              <PropertyRef Name="idAlojamiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Arrendadores_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Arrendadores" Type="Self.Arrendadores" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Arrendadores">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalificacionesArrendatario_Arrendadores">
+          <End Role="Arrendadores" Type="Self.Arrendadores" Multiplicity="1" />
+          <End Role="CalificacionesArrendatario" Type="Self.CalificacionesArrendatario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arrendadores">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="CalificacionesArrendatario">
+              <PropertyRef Name="cedulaArrendador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Arrendatarios_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Arrendatarios" Type="Self.Arrendatarios" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Arrendatarios">
+              <PropertyRef Name="cedulaArrendatario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalificacionesAlojamiento_Arrendatarios">
+          <End Role="Arrendatarios" Type="Self.Arrendatarios" Multiplicity="1" />
+          <End Role="CalificacionesAlojamiento" Type="Self.CalificacionesAlojamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arrendatarios">
+              <PropertyRef Name="cedulaArrendatario" />
+            </Principal>
+            <Dependent Role="CalificacionesAlojamiento">
+              <PropertyRef Name="cedulaArrendatario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalificacionesArrendatario_Arrendatarios">
+          <End Role="Arrendatarios" Type="Self.Arrendatarios" Multiplicity="1" />
+          <End Role="CalificacionesArrendatario" Type="Self.CalificacionesArrendatario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arrendatarios">
+              <PropertyRef Name="cedulaArrendatario" />
+            </Principal>
+            <Dependent Role="CalificacionesArrendatario">
+              <PropertyRef Name="cedulaArrendatario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalificacionesAlojamiento_Calificaciones">
+          <End Role="Calificaciones" Type="Self.Calificaciones" Multiplicity="1" />
+          <End Role="CalificacionesAlojamiento" Type="Self.CalificacionesAlojamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calificaciones">
+              <PropertyRef Name="idCalificacion" />
+            </Principal>
+            <Dependent Role="CalificacionesAlojamiento">
+              <PropertyRef Name="idCalificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalificacionesArrendatario_Calificaciones">
+          <End Role="Calificaciones" Type="Self.Calificaciones" Multiplicity="1" />
+          <End Role="CalificacionesArrendatario" Type="Self.CalificacionesArrendatario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calificaciones">
+              <PropertyRef Name="idCalificacion" />
+            </Principal>
+            <Dependent Role="CalificacionesArrendatario">
+              <PropertyRef Name="idCalificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CuentasBancarias_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="CuentasBancarias" Type="Self.CuentasBancarias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="CuentasBancarias">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CuentasUsuarios_Usuarios1">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="CuentasUsuarios" Type="Self.CuentasUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="CuentasUsuarios">
+              <PropertyRef Name="cedulaUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RoomServicesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administradores" EntityType="Self.Administradores" />
+          <EntitySet Name="AlbumFotograficos" EntityType="Self.AlbumFotograficos" />
+          <EntitySet Name="Alojamientos" EntityType="Self.Alojamientos" />
+          <EntitySet Name="AlquilersAlojamientos" EntityType="Self.AlquilersAlojamientos" />
+          <EntitySet Name="Arrendadores" EntityType="Self.Arrendadores" />
+          <EntitySet Name="Arrendatarios" EntityType="Self.Arrendatarios" />
+          <EntitySet Name="Calificaciones" EntityType="Self.Calificaciones" />
+          <EntitySet Name="CalificacionesAlojamiento" EntityType="Self.CalificacionesAlojamiento" />
+          <EntitySet Name="CalificacionesArrendatario" EntityType="Self.CalificacionesArrendatario" />
+          <EntitySet Name="CuentasBancarias" EntityType="Self.CuentasBancarias" />
+          <EntitySet Name="CuentasUsuarios" EntityType="Self.CuentasUsuarios" />
+          <EntitySet Name="Ubicaciones" EntityType="Self.Ubicaciones" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK_CuentasUsuarios_Administradores" Association="Self.FK_CuentasUsuarios_Administradores">
+            <End Role="Administradores" EntitySet="Administradores" />
+            <End Role="CuentasUsuarios" EntitySet="CuentasUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlbumFotograficos_Alojamientos" Association="Self.FK_AlbumFotograficos_Alojamientos">
+            <End Role="Alojamientos" EntitySet="Alojamientos" />
+            <End Role="AlbumFotograficos" EntitySet="AlbumFotograficos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alojamientos_Arrendadores" Association="Self.FK_Alojamientos_Arrendadores">
+            <End Role="Arrendadores" EntitySet="Arrendadores" />
+            <End Role="Alojamientos" EntitySet="Alojamientos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alojamientos_Ubicaciones" Association="Self.FK_Alojamientos_Ubicaciones">
+            <End Role="Ubicaciones" EntitySet="Ubicaciones" />
+            <End Role="Alojamientos" EntitySet="Alojamientos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlquilersAlojamientos_Alojamientos" Association="Self.FK_AlquilersAlojamientos_Alojamientos">
+            <End Role="Alojamientos" EntitySet="Alojamientos" />
+            <End Role="AlquilersAlojamientos" EntitySet="AlquilersAlojamientos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalificacionesAlojamiento_Alojamientos" Association="Self.FK_CalificacionesAlojamiento_Alojamientos">
+            <End Role="Alojamientos" EntitySet="Alojamientos" />
+            <End Role="CalificacionesAlojamiento" EntitySet="CalificacionesAlojamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Arrendadores_Usuarios" Association="Self.FK_Arrendadores_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Arrendadores" EntitySet="Arrendadores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalificacionesArrendatario_Arrendadores" Association="Self.FK_CalificacionesArrendatario_Arrendadores">
+            <End Role="Arrendadores" EntitySet="Arrendadores" />
+            <End Role="CalificacionesArrendatario" EntitySet="CalificacionesArrendatario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Arrendatarios_Usuarios" Association="Self.FK_Arrendatarios_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Arrendatarios" EntitySet="Arrendatarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalificacionesAlojamiento_Arrendatarios" Association="Self.FK_CalificacionesAlojamiento_Arrendatarios">
+            <End Role="Arrendatarios" EntitySet="Arrendatarios" />
+            <End Role="CalificacionesAlojamiento" EntitySet="CalificacionesAlojamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalificacionesArrendatario_Arrendatarios" Association="Self.FK_CalificacionesArrendatario_Arrendatarios">
+            <End Role="Arrendatarios" EntitySet="Arrendatarios" />
+            <End Role="CalificacionesArrendatario" EntitySet="CalificacionesArrendatario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalificacionesAlojamiento_Calificaciones" Association="Self.FK_CalificacionesAlojamiento_Calificaciones">
+            <End Role="Calificaciones" EntitySet="Calificaciones" />
+            <End Role="CalificacionesAlojamiento" EntitySet="CalificacionesAlojamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalificacionesArrendatario_Calificaciones" Association="Self.FK_CalificacionesArrendatario_Calificaciones">
+            <End Role="Calificaciones" EntitySet="Calificaciones" />
+            <End Role="CalificacionesArrendatario" EntitySet="CalificacionesArrendatario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuentasBancarias_Usuarios" Association="Self.FK_CuentasBancarias_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="CuentasBancarias" EntitySet="CuentasBancarias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuentasUsuarios_Usuarios1" Association="Self.FK_CuentasUsuarios_Usuarios1">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="CuentasUsuarios" EntitySet="CuentasUsuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RoomServicesModelStoreContainer" CdmEntityContainer="RoomServicesEntities">
+          <EntitySetMapping Name="Administradores">
+            <EntityTypeMapping TypeName="RoomServicesModel.Administradores">
+              <MappingFragment StoreEntitySet="Administradores">
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlbumFotograficos">
+            <EntityTypeMapping TypeName="RoomServicesModel.AlbumFotograficos">
+              <MappingFragment StoreEntitySet="AlbumFotograficos">
+                <ScalarProperty Name="idFotografia" ColumnName="idFotografia" />
+                <ScalarProperty Name="nombreArchivo" ColumnName="nombreArchivo" />
+                <ScalarProperty Name="formato" ColumnName="formato" />
+                <ScalarProperty Name="rutaGuardado" ColumnName="rutaGuardado" />
+                <ScalarProperty Name="idAlojamiento" ColumnName="idAlojamiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alojamientos">
+            <EntityTypeMapping TypeName="RoomServicesModel.Alojamientos">
+              <MappingFragment StoreEntitySet="Alojamientos">
+                <ScalarProperty Name="idAlojamiento" ColumnName="idAlojamiento" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="descripcionAlojamiento" ColumnName="descripcionAlojamiento" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="tipoAlojamiento" ColumnName="tipoAlojamiento" />
+                <ScalarProperty Name="idUbicacion" ColumnName="idUbicacion" />
+                <ScalarProperty Name="cedulaArrendador" ColumnName="cedulaArrendador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlquilersAlojamientos">
+            <EntityTypeMapping TypeName="RoomServicesModel.AlquilersAlojamientos">
+              <MappingFragment StoreEntitySet="AlquilersAlojamientos">
+                <ScalarProperty Name="numeroContrato" ColumnName="numeroContrato" />
+                <ScalarProperty Name="numeroMeses" ColumnName="numeroMeses" />
+                <ScalarProperty Name="pagoMensual" ColumnName="pagoMensual" />
+                <ScalarProperty Name="fechaAlquiler" ColumnName="fechaAlquiler" />
+                <ScalarProperty Name="idAlojamiento" ColumnName="idAlojamiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Arrendadores">
+            <EntityTypeMapping TypeName="RoomServicesModel.Arrendadores">
+              <MappingFragment StoreEntitySet="Arrendadores">
+                <ScalarProperty Name="idArrendador" ColumnName="idArrendador" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Arrendatarios">
+            <EntityTypeMapping TypeName="RoomServicesModel.Arrendatarios">
+              <MappingFragment StoreEntitySet="Arrendatarios">
+                <ScalarProperty Name="idArrendatario" ColumnName="idArrendatario" />
+                <ScalarProperty Name="tipoArrendador" ColumnName="tipoArrendador" />
+                <ScalarProperty Name="cedulaArrendatario" ColumnName="cedulaArrendatario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Calificaciones">
+            <EntityTypeMapping TypeName="RoomServicesModel.Calificaciones">
+              <MappingFragment StoreEntitySet="Calificaciones">
+                <ScalarProperty Name="idCalificacion" ColumnName="idCalificacion" />
+                <ScalarProperty Name="comentarioAlojamiento" ColumnName="comentarioAlojamiento" />
+                <ScalarProperty Name="calificacionAlojamiento" ColumnName="calificacionAlojamiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CalificacionesAlojamiento">
+            <EntityTypeMapping TypeName="RoomServicesModel.CalificacionesAlojamiento">
+              <MappingFragment StoreEntitySet="CalificacionesAlojamiento">
+                <ScalarProperty Name="idCalificacion" ColumnName="idCalificacion" />
+                <ScalarProperty Name="cedulaArrendatario" ColumnName="cedulaArrendatario" />
+                <ScalarProperty Name="idAlojamiento" ColumnName="idAlojamiento" />
+                <ScalarProperty Name="fechaCalificacion" ColumnName="fechaCalificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CalificacionesArrendatario">
+            <EntityTypeMapping TypeName="RoomServicesModel.CalificacionesArrendatario">
+              <MappingFragment StoreEntitySet="CalificacionesArrendatario">
+                <ScalarProperty Name="idCalificacion" ColumnName="idCalificacion" />
+                <ScalarProperty Name="cedulaArrendatario" ColumnName="cedulaArrendatario" />
+                <ScalarProperty Name="cedulaArrendador" ColumnName="cedulaArrendador" />
+                <ScalarProperty Name="fechaCalificacion" ColumnName="fechaCalificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CuentasBancarias">
+            <EntityTypeMapping TypeName="RoomServicesModel.CuentasBancarias">
+              <MappingFragment StoreEntitySet="CuentasBancarias">
+                <ScalarProperty Name="numeroCuenta" ColumnName="numeroCuenta" />
+                <ScalarProperty Name="saldoCuenta" ColumnName="saldoCuenta" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CuentasUsuarios">
+            <EntityTypeMapping TypeName="RoomServicesModel.CuentasUsuarios">
+              <MappingFragment StoreEntitySet="CuentasUsuarios">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="cedulaUsuario" ColumnName="cedulaUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ubicaciones">
+            <EntityTypeMapping TypeName="RoomServicesModel.Ubicaciones">
+              <MappingFragment StoreEntitySet="Ubicaciones">
+                <ScalarProperty Name="idUbicacion" ColumnName="idUbicacion" />
+                <ScalarProperty Name="nombreCiudad" ColumnName="nombreCiudad" />
+                <ScalarProperty Name="nombreDepartamento" ColumnName="nombreDepartamento" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="RoomServicesModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7ef0988bac1c47379d1a997abc62048c" Name="Diagram1">
+        <EntityTypeShape EntityType="RoomServicesModel.Administradores" Width="1.5" PointX="5.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.AlbumFotograficos" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.Alojamientos" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.AlquilersAlojamientos" Width="1.5" PointX="8.625" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.Arrendadores" Width="1.5" PointX="2.5" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.Arrendatarios" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.Calificaciones" Width="1.5" PointX="9.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.CalificacionesAlojamiento" Width="1.5" PointX="10.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.CalificacionesArrendatario" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.CuentasBancarias" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.CuentasUsuarios" Width="1.5" PointX="8" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.Ubicaciones" Width="1.5" PointX="2.625" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.Usuarios" Width="1.5" PointX="0.5" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="RoomServicesModel.FK_CuentasUsuarios_Administradores" ManuallyRouted="false" />
+        <AssociationConnector Association="RoomServicesModel.FK_AlbumFotograficos_Alojamientos" ManuallyRouted="false" />
+        <AssociationConnector Association="RoomServicesModel.FK_Alojamientos_Arrendadores" ManuallyRouted="false" />
+        <AssociationConnector Association="RoomServicesModel.FK_Alojamientos_Ubicaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="RoomServicesModel.FK_AlquilersAlojamientos_Alojamientos" ManuallyRouted="false" />
+        <AssociationConnector Association="RoomServicesModel.FK_CalificacionesAlojamiento_Alojamientos" ManuallyRouted="false" />
+        <AssociationConnector Association="RoomServicesModel.FK_Arrendadores_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="RoomServicesModel.FK_CalificacionesArrendatario_Arrendadores" ManuallyRouted="false" />
+        <AssociationConnector Association="RoomServicesModel.FK_Arrendatarios_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="RoomServicesModel.FK_CalificacionesAlojamiento_Arrendatarios" ManuallyRouted="false" />
+        <AssociationConnector Association="RoomServicesModel.FK_CalificacionesArrendatario_Arrendatarios" ManuallyRouted="false" />
+        <AssociationConnector Association="RoomServicesModel.FK_CalificacionesAlojamiento_Calificaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="RoomServicesModel.FK_CalificacionesArrendatario_Calificaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="RoomServicesModel.FK_CuentasBancarias_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="RoomServicesModel.FK_CuentasUsuarios_Usuarios1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
