@@ -12,6 +12,7 @@ namespace Servicios.EntidadesDelDominio.Entidades
         private byte numeroMeses;
         Alojamiento alojamiento;
         private double pagoMensual;
+        private Alojamiento Alojamiento { get; set; }//Faltaba
 
 
         public Alquiler(DateTime fechaAlquiler, int numeroContrato, byte numeroMeses, double pagoMensual)

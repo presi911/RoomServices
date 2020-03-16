@@ -11,6 +11,7 @@ namespace Servicios.EntidadesDelDominio.Entidades
         string ComentarioCalificacion { get; set; }
         
         private byte calificacionHabitacion;
+        Arrendatario Arrendatario { get; set; }//Faltaba
 
         public Calificacion(int idCalificacion, string comentarioCalificacion, byte calificacionHabitacion)
         {

@@ -15,7 +15,8 @@ namespace Servicios.EntidadesDelDominio.Entidades
         Arrendatario arrendatario;
         List<AlbumFotografico> fotos;
         List<Calificacion> calificaciones;
-
+        private Ubicacion Ubicacion { get; set; } //Faltaba
+        private Alquiler Alquiler { get; set; }//Faltaba
 
         public Alojamiento(string titulo, string descripcionAlojamiento, double precio, string tipoAlojamiento, int idAlojamiento)
         {
