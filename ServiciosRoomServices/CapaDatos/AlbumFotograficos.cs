@@ -11,9 +11,11 @@ namespace CapaDatos
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class AlbumFotograficos
     {
+        [Key]
         public int idFotografia { get; set; }
         public string nombreArchivo { get; set; }
         public string formato { get; set; }

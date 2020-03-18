@@ -11,7 +11,8 @@ namespace CapaDatos
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Calificaciones
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +21,7 @@ namespace CapaDatos
             this.CalificacionesAlojamiento = new HashSet<CalificacionesAlojamiento>();
             this.CalificacionesArrendatario = new HashSet<CalificacionesArrendatario>();
         }
-    
+        [Key]
         public int idCalificacion { get; set; }
         public string comentarioAlojamiento { get; set; }
         public Nullable<int> calificacionAlojamiento { get; set; }

@@ -11,7 +11,9 @@ namespace CapaDatos
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Usuarios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,17 +22,15 @@ namespace CapaDatos
             this.CuentasBancarias = new HashSet<CuentasBancarias>();
             this.CuentasUsuarios = new HashSet<CuentasUsuarios>();
         }
-    
+        [Key]
         public string cedula { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
         public Nullable<System.DateTime> fechaNacimiento { get; set; }
         public string nacionalidad { get; set; }
         public string genero { get; set; }
-    
-        public virtual Arrendadores Arrendadores { get; set; }
-        public virtual Arrendatarios Arrendatarios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+
         public virtual ICollection<CuentasBancarias> CuentasBancarias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CuentasUsuarios> CuentasUsuarios { get; set; }

@@ -11,9 +11,11 @@ namespace CapaDatos
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CuentasUsuarios
     {
+        [Key]
         public string email { get; set; }
         public string contrasena { get; set; }
         public string cedulaUsuario { get; set; }

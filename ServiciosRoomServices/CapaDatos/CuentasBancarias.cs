@@ -11,9 +11,11 @@ namespace CapaDatos
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CuentasBancarias
     {
+        [Key]
         public int numeroCuenta { get; set; }
         public decimal saldoCuenta { get; set; }
         public string cedula { get; set; }

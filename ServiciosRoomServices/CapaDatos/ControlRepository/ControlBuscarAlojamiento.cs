@@ -9,7 +9,7 @@ namespace CapaDatos.ControlRepository
 {
     public class ControlBuscarAlojamiento : IBuscarAlojamiento
     {
-        RoomServicesEntities modeloBD;
+         RoomServicesEntities modeloBD;
 
         public ControlBuscarAlojamiento()
         {

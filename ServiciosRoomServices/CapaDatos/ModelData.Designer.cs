@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\crist\Documents\Universidad\Ingenieria Software 2\Proyecto De Semestre\ServiciosProyecto\ServiciosRoomServices\CapaDatos\ModelDatos1.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\crist\Documents\Universidad\Ingenieria Software 2\Proyecto De Semestre\ServiciosProyecto\ServiciosRoomServices\CapaDatos\ModelData.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
