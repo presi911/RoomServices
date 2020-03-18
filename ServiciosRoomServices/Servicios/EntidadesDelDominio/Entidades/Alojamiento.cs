@@ -7,15 +7,20 @@ namespace Servicios.EntidadesDelDominio.Entidades
 {
     public class Alojamiento
     {
-        string Titulo { get; set; }
-        string DescripcionAlojamiento { get; set; }
+        public string Titulo { get; set; }
+        public string DescripcionAlojamiento { get; set; }
         private double precio;
-        string TipoAlojamiento { get; set; }
-        int IdAlojamiento { get;  }
+        public string TipoAlojamiento { get; set; }
+        public int IdAlojamiento { get; set; }
         Arrendatario arrendatario;
         List<AlbumFotografico> fotos;
         List<Calificacion> calificaciones;
+        public Ubicacion UbicacionAlojamiento { get; set; }
 
+        public Alojamiento()
+        {
+
+        }
 
         public Alojamiento(string titulo, string descripcionAlojamiento, double precio, string tipoAlojamiento, int idAlojamiento)
         {
@@ -29,7 +34,7 @@ namespace Servicios.EntidadesDelDominio.Entidades
         /// <summary>
         /// Autopropiedad que permite obtener o modificar el valor del atributo 'precio'
         /// </summary>
-        double Precio
+        public double Precio
         {
             get => this.precio;
             set => this.precio = this.SetPrecio(value);

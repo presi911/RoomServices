@@ -5,17 +5,31 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
+using Servicios.ILogicaNegocio;
+using Servicios.APIRestService;
+using Servicios.EntidadesDelDominio;
+
 namespace Servicios.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class BuscarAlojamientoController : ControllerBase
     {
+        IBuscarAlojamiento obtenerInfo;
+        
+        public BuscarAlojamientoController()
+        {
+            obtenerInfo = new ControlBuscarAlojamiento();
+        }
+
         // GET: api/BuscarAlojamiento
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<EntidadesDelDominio.Entidades.Alojamiento> BuscarAlojamiento(string filtro)
         {
-            return new string[] { "value1", "value2" };
+            var m = 4;
+            var alojamientos = obtenerInfo.ListarAlojamientos(filtro);
+
+            return alojamientos.ToList();
         }
 
         // GET: api/BuscarAlojamiento/5

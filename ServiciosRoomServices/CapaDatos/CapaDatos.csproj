@@ -51,88 +51,92 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administradores.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelDatos1.tt</DependentUpon>
     </Compile>
     <Compile Include="AlbumFotograficos.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelDatos1.tt</DependentUpon>
     </Compile>
     <Compile Include="Alojamientos.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelDatos1.tt</DependentUpon>
     </Compile>
     <Compile Include="AlquilersAlojamientos.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelDatos1.tt</DependentUpon>
     </Compile>
     <Compile Include="Arrendadores.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelDatos1.tt</DependentUpon>
     </Compile>
     <Compile Include="Arrendatarios.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelDatos1.tt</DependentUpon>
     </Compile>
     <Compile Include="Calificaciones.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelDatos1.tt</DependentUpon>
     </Compile>
     <Compile Include="CalificacionesAlojamiento.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelDatos1.tt</DependentUpon>
     </Compile>
     <Compile Include="CalificacionesArrendatario.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelDatos1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ControlRepository\ControlBuscarAlojamiento.cs" />
     <Compile Include="CuentasBancarias.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelDatos1.tt</DependentUpon>
     </Compile>
     <Compile Include="CuentasUsuarios.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelDatos1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IGestionInformacion\IAlquilarAlojamiento.cs" />
+    <Compile Include="IGestionInformacion\IBuscarAlojamiento.cs" />
+    <Compile Include="IGestionInformacion\ILogueoUsuario.cs" />
+    <Compile Include="IGestionInformacion\IRegistrarAlojamiento.cs" />
+    <Compile Include="IGestionInformacion\IRegistroUsuario.cs" />
+    <Compile Include="ModelDatos1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDatos1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelDatos1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDatos1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelDatos1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDatos1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RepositoryDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RepositoryDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RepositoryDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RepositoryDB.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Ubicaciones.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelDatos1.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelDatos1.tt</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="RepositoryDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RepositoryDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="packages.config" />
-    <None Include="RepositoryDB.edmx.diagram">
-      <DependentUpon>RepositoryDB.edmx</DependentUpon>
+    <EntityDeploy Include="ModelDatos1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelDatos1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelDatos1.edmx.diagram">
+      <DependentUpon>ModelDatos1.edmx</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="RepositoryDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RepositoryDB.Context.cs</LastGenOutput>
-      <DependentUpon>RepositoryDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="RepositoryDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RepositoryDB.edmx</DependentUpon>
-      <LastGenOutput>RepositoryDB.cs</LastGenOutput>
-    </Content>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelDatos1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelDatos1.edmx</DependentUpon>
+      <LastGenOutput>ModelDatos1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelDatos1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelDatos1.edmx</DependentUpon>
+      <LastGenOutput>ModelDatos1.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

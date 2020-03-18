@@ -12,8 +12,12 @@ namespace Servicios.EntidadesDelDominio.Entidades
         string NombreDepartamento { get; set; }
         string Direccion { get; set; }
         string Descripcion { get; set; }
-        List<Alojamiento> alojamientos;
 
+
+        public Ubicacion()
+        {
+
+        }
         public Ubicacion(string nombreCiudad, string nombreDepartamento, string direccion, string descripcion)
         {
             NombreCiudad = nombreCiudad;
