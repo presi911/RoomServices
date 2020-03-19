@@ -15,8 +15,12 @@ namespace Servicios.ILogicaNegocio
 
         Alojamiento ConsultarDescripcionAlojamiento();
 
-        Calificacion MostrarInfoCalificacion();
+        Alojamiento ConsultarAlojamiento(int idAlojamiento);
+        Arrendador ConsultarInformacionArrendador(string cedulaArrendador);
 
-        Arrendador ConsultarInformacionArrendador();
+        double PromedioCalificaciones(int idHabitacion);
+
+        Newtonsoft.Json.Linq.JObject RetornarInformacionAlojamiento(int idHabitacion);
+
     }
 }

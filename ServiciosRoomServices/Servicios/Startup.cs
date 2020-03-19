@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using CapaDatos;
+using Microsoft.Extensions.Configuration;
 
 namespace Servicios
 {
@@ -27,6 +29,8 @@ namespace Servicios
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo

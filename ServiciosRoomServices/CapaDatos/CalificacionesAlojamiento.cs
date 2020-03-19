@@ -16,13 +16,13 @@ namespace CapaDatos
 
     public partial class CalificacionesAlojamiento
     {
-        [Key, Column(Order=0) ]
-        public int idCalificacion { get; set; }
         [Key, Column(Order = 1)]
-        public string cedulaArrendatario { get; set; }
+        public int idCalificacion { get; set; }
         [Key, Column(Order = 2)]
-        public int idAlojamiento { get; set; }
+        public string cedulaArrendatario { get; set; }
         [Key, Column(Order = 3)]
+        public int idAlojamiento { get; set; }
+        [Key, Column(Order = 4)]
         public System.DateTime fechaCalificacion { get; set; }
     
         public virtual Alojamientos Alojamientos { get; set; }

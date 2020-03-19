@@ -9,11 +9,11 @@ namespace CapaDatos.ControlRepository
 {
     public class ControlBuscarAlojamiento : IBuscarAlojamiento
     {
-         RoomServicesEntities modeloBD;
+         RoomServicesEntities1 modeloBD;
 
         public ControlBuscarAlojamiento()
         {
-            modeloBD = new RoomServicesEntities();
+            modeloBD = new RoomServicesEntities1();
         }
 
 
@@ -27,6 +27,7 @@ namespace CapaDatos.ControlRepository
             var consulta = (from item in modeloBD.Arrendadores
                             where (item.cedula == cedulaArrendador)
                             select item).ToList();
+
 
             return consulta.Count() != 0 ? consulta.First() : null;
 
@@ -48,7 +49,8 @@ namespace CapaDatos.ControlRepository
                        where ((item.titulo.Contains(info)) || item.descripcionAlojamiento.Contains(info))
                        select item).ToList();
 
-         //var m = ConsultarAlojamiento(2);
+         //var m = ConsultarAlojamiento(2);System.Data.Entity.Core.EntityCommandExecutionException: 'An error occurred while executing the command definition. See the inner exception for details.'
+
 
 
         return consulta;
@@ -81,10 +83,12 @@ namespace CapaDatos.ControlRepository
     /// <param name="idHabitacion">dato númerico que corresponde al id de la habitación consultada</param>
     /// <returns>Colección de objetos tipo calificación que pertenecen a la habitación consultada</returns>
     public List<CalificacionesAlojamiento> RetornarCalificaciones(int idHabitacion)
-    {
+    {       
+            //A partir del id de la habitación propocionado, consulto la habitación:
             var alojamiento = this.ConsultarAlojamiento(idHabitacion);
-
-            return alojamiento.CalificacionesAlojamiento.ToList();
+            
+            //Obtengo la colección de calificaciones realizadas a la habitación siempre y cuando no sean null:
+            return alojamiento!=null ? alojamiento.CalificacionesAlojamiento.ToList() : null;
     }
 
         /// <summary>
@@ -98,24 +102,60 @@ namespace CapaDatos.ControlRepository
             int suma = 0;
             //Obtengo la coleccion con todas las calificaciones realizadas a la habitación con su id
             var calificaciones = this.RetornarCalificaciones(idHabitacion);
-            
+
             //Recorro la lista de calificaciones, consultando el valor asignado a esa calificación mediante una consulta linq
             //voy acumulando en una variable llamada suma:
-            foreach (var calificacion in calificaciones)
+            if (calificaciones!=null)
             {
-                var consulta = (from item in modeloBD.Calificaciones
-                                where (item.idCalificacion==calificacion.idCalificacion)
-                                select item.calificacionAlojamiento).ToList();
-
-                if (consulta.Count() > 0 || consulta.First()!=null)
+                foreach (var calificacion in calificaciones)
                 {
-                    suma += (int)consulta.First();
+                    var consulta = (from item in modeloBD.Calificaciones
+                                    where (item.idCalificacion == calificacion.idCalificacion)
+                                    select item.calificacionAlojamiento).ToList();
+
+                    if (consulta.Count() > 0 || consulta.First() != null)
+                    {
+                        suma += (int)consulta.First();
+                    }
                 }
+                //retorno el promedio de las calificaciones
+                return suma / calificaciones.Count();
             }
-            //retorno el promedio de las calificaciones
-            return suma / calificaciones.Count();
-            
-            
+            else
+            {
+                return 0;
+            }
+                        
+        }
+
+        /// <summary>
+        /// Permite obtener un usuario de la base de datos, esto es debido a que arrendatario tiene una relación directa con
+        /// Usuario con llave foránea en cédula, y por tanto si quiero consultar todos los datos del arrendatario, necesito por 
+        /// ende también consultar el usuario que es la clase padre.
+        /// </summary>
+        /// <param name="cedulaUsuario">cédula del usuario a consultar</param>
+        /// <returns>objeto tipo Usuarios</returns>
+        public Usuarios ConsultarUsuario(string cedulaUsuario)
+        {
+            //Mediante una consulta de Linq obtengo el usuario que corresponde con su cédula
+            var consulta = (from item in modeloBD.Usuarios
+                            where (item.cedula == cedulaUsuario)
+                            select item).ToList();
+
+            //Retorno el usuario
+            return consulta.Count() != 0 ? consulta.First() : null;
+        }
+
+        /// <summary>
+        /// Permite retornar la información de un Arrendador propocionando como parametro el id del alojamiento que tiene publicado
+        /// </summary>
+        /// <param name="idHabitacion">entero id del alojamiento que tiene publicado el arrendador</param>
+        /// <returns>objeto tipo Arrendador con la persona que ha publicado la el anuncio</returns>
+        /// 
+        public Arrendadores ConsultarArrendadorHabitacion(int idAlojamiento)
+        {
+            var alojamiento = this.ConsultarAlojamiento(idAlojamiento);
+            return ConsultarInformacionArrendador(alojamiento.cedulaArrendador);
         }
     }
 }

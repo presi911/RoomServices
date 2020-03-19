@@ -9,12 +9,12 @@ namespace Servicios.EntidadesDelDominio.Abstractas
     public abstract class Usuario
     {
 
-        string Cedula { get; set; }
-        string Nombre { get; set; }
-        string Apellido { get; set; }
-        DateTime Fecha { get; set; }
-        string Nacionalidad { get; set; }
-        char Genero { get; set; }
+        public string Cedula { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public DateTime Fecha { get; set; }
+        public string Nacionalidad { get; set; }
+        public char Genero { get; set; }
 
         CuentaBancaria cuentaBancaria;
         CuentaUsuario cuentaUsuario;

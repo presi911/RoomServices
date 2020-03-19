@@ -27,7 +27,7 @@ namespace CapaDatos
         public string tipoArrendador { get; set; }
         [Key, ForeignKey("Usuarios")]
         public string cedulaArrendatario { get; set; }
-
+    
         public virtual Usuarios Usuarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CalificacionesAlojamiento> CalificacionesAlojamiento { get; set; }

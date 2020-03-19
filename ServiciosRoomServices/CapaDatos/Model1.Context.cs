@@ -13,16 +13,16 @@ namespace CapaDatos
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RoomServicesEntities : DbContext
+    public partial class RoomServicesEntities1 : DbContext
     {
-        public RoomServicesEntities()
-            : base("RoomServicesEntities")
+        public RoomServicesEntities1()
+            : base("RoomServicesEntities1")
         {
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //throw new UnintentionalCodeFirstException();
+           // throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<Administradores> Administradores { get; set; }

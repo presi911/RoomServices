@@ -16,6 +16,10 @@ namespace CapaDatos.IGestionInformacion
 
         Arrendadores ConsultarInformacionArrendador(string cedulaArrendador);
 
+        Usuarios ConsultarUsuario(string cedulaUsuario);
+
         double PromedioCalificaciones(int idHabitacion);
+
+        Arrendadores ConsultarArrendadorHabitacion(int idAlojamiento);
     }
 }

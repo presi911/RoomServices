@@ -12,7 +12,6 @@ namespace CapaDatos
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class Usuarios
     {
@@ -29,8 +28,10 @@ namespace CapaDatos
         public Nullable<System.DateTime> fechaNacimiento { get; set; }
         public string nacionalidad { get; set; }
         public string genero { get; set; }
-
-
+    
+        public virtual Arrendadores Arrendadores { get; set; }
+        public virtual Arrendatarios Arrendatarios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CuentasBancarias> CuentasBancarias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CuentasUsuarios> CuentasUsuarios { get; set; }

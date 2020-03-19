@@ -34,6 +34,7 @@
           <Property Name="tipoAlojamiento" Type="nchar" MaxLength="30" />
           <Property Name="idUbicacion" Type="int" Nullable="false" />
           <Property Name="cedulaArrendador" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="estado" Type="int" />
         </EntityType>
         <EntityType Name="AlquilersAlojamientos">
           <Key>
@@ -420,6 +421,7 @@
           <Property Name="tipoAlojamiento" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
           <Property Name="idUbicacion" Type="Int32" Nullable="false" />
           <Property Name="cedulaArrendador" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="estado" Type="Int32" />
           <NavigationProperty Name="AlbumFotograficos" Relationship="Self.FK_AlbumFotograficos_Alojamientos" FromRole="Alojamientos" ToRole="AlbumFotograficos" />
           <NavigationProperty Name="Arrendadores" Relationship="Self.FK_Alojamientos_Arrendadores" FromRole="Alojamientos" ToRole="Arrendadores" />
           <NavigationProperty Name="Ubicaciones" Relationship="Self.FK_Alojamientos_Ubicaciones" FromRole="Alojamientos" ToRole="Ubicaciones" />
@@ -723,7 +725,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="RoomServicesEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="RoomServicesEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Administradores" EntityType="Self.Administradores" />
           <EntitySet Name="AlbumFotograficos" EntityType="Self.AlbumFotograficos" />
           <EntitySet Name="Alojamientos" EntityType="Self.Alojamientos" />
@@ -803,7 +805,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RoomServicesModelStoreContainer" CdmEntityContainer="RoomServicesEntities">
+        <EntityContainerMapping StorageEntityContainer="RoomServicesModelStoreContainer" CdmEntityContainer="RoomServicesEntities1">
           <EntitySetMapping Name="Administradores">
             <EntityTypeMapping TypeName="RoomServicesModel.Administradores">
               <MappingFragment StoreEntitySet="Administradores">
@@ -834,6 +836,7 @@
                 <ScalarProperty Name="tipoAlojamiento" ColumnName="tipoAlojamiento" />
                 <ScalarProperty Name="idUbicacion" ColumnName="idUbicacion" />
                 <ScalarProperty Name="cedulaArrendador" ColumnName="cedulaArrendador" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

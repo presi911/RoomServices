@@ -20,7 +20,6 @@ namespace CapaDatos
         {
             this.CuentasUsuarios = new HashSet<CuentasUsuarios>();
         }
-        
         [Key]
         public string cedula { get; set; }
         public string nombre { get; set; }

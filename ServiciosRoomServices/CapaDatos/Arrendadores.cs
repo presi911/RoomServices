@@ -22,7 +22,7 @@ namespace CapaDatos
             this.Alojamientos = new HashSet<Alojamientos>();
             this.CalificacionesArrendatario = new HashSet<CalificacionesArrendatario>();
         }
-        
+    
         public int idArrendador { get; set; }
         [Key, ForeignKey("Usuarios")]
         public string cedula { get; set; }

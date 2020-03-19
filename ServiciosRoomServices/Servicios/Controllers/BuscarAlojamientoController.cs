@@ -22,21 +22,23 @@ namespace Servicios.Controllers
             obtenerInfo = new ControlBuscarAlojamiento();
         }
 
-        // GET: api/BuscarAlojamiento
+        // GET: api/ConsultarAlojamientos
         [HttpGet]
-        public IEnumerable<EntidadesDelDominio.Entidades.Alojamiento> BuscarAlojamiento(string filtro)
+        public IEnumerable<EntidadesDelDominio.Entidades.Alojamiento> ConsultarAlojamientos(string filtro)
         {
-            var m = 4;
+
             var alojamientos = obtenerInfo.ListarAlojamientos(filtro);
 
             return alojamientos.ToList();
         }
 
-        // GET: api/BuscarAlojamiento/5
+        // GET: api/ConsultarInformacionAlojamiento/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public string ConsultarInformacionAlojamiento(int id)
         {
-            return "value";
+            var alojamiento = obtenerInfo.RetornarInformacionAlojamiento(id);
+
+            return alojamiento.ToString();
         }
 
         // POST: api/BuscarAlojamiento
@@ -49,6 +51,7 @@ namespace Servicios.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+
         }
 
         // DELETE: api/ApiWithActions/5

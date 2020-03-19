@@ -22,6 +22,7 @@ namespace CapaDatos
             this.AlquilersAlojamientos = new HashSet<AlquilersAlojamientos>();
             this.CalificacionesAlojamiento = new HashSet<CalificacionesAlojamiento>();
         }
+
         [Key]
         public int idAlojamiento { get; set; }
         public string titulo { get; set; }
@@ -30,6 +31,7 @@ namespace CapaDatos
         public string tipoAlojamiento { get; set; }
         public int idUbicacion { get; set; }
         public string cedulaArrendador { get; set; }
+        public Nullable<int> estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AlbumFotograficos> AlbumFotograficos { get; set; }

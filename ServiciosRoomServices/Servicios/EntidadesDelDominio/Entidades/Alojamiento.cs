@@ -11,7 +11,9 @@ namespace Servicios.EntidadesDelDominio.Entidades
         public string DescripcionAlojamiento { get; set; }
         private double precio;
         public string TipoAlojamiento { get; set; }
+        public Nullable<int> Estado { get; set; }
         public int IdAlojamiento { get; set; }
+
         Arrendatario arrendatario;
         List<AlbumFotografico> fotos;
         List<Calificacion> calificaciones;
