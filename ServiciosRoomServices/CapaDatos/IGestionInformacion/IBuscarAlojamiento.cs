@@ -12,14 +12,10 @@ namespace CapaDatos.IGestionInformacion
     {
         List<Alojamientos> ListarAlojamientos(string filtro);
 
-        Alojamientos ConsultarDescripcionAlojamiento();
+        Alojamientos ConsultarAlojamiento(int idAlojamiento);
 
-        Calificaciones MostrarInfoCalificacion();
+        Arrendadores ConsultarInformacionArrendador(string cedulaArrendador);
 
-        Arrendadores ConsultarInformacionArrendador();
-
-
-
-
+        double PromedioCalificaciones(int idHabitacion);
     }
 }
