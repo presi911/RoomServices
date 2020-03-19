@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace CapaDatos.IGestionInformacion
 {
-    interface IAlquilarAlojamiento
+    public interface IAlquilarAlojamiento
     {
+        List<Alojamientos> listarAlojamiento(int idAlojamiento);
+
+        Alojamientos verificarDisponiblidad(int idAlojamiento);
+
+        Alojamientos mostrarInformacionAlojamiento(String cedulaArrendador, String cedulaArrendatario, int idAlojamiento);
+
+        Arrendatarios ingresarDatosArrendatarios(String cedulaArrendatario);
+
+
+
     }
 }
