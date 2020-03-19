@@ -29,9 +29,9 @@ namespace CapaDatos.ControlRepository
     public List<Alojamientos> ListarAlojamientos(string info)
     {
 
-        var consulta = from item in modeloBD.Alojamientos
-                        where ((item.titulo.Contains(info)) || item.descripcionAlojamiento.Contains(info))
-                        select item;
+        var consulta = (from item in modeloBD.Alojamientos
+                       where ((item.titulo.Contains(info)) || item.descripcionAlojamiento.Contains(info))
+                       select item);
 
         return consulta.ToList();
     }
