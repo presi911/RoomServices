@@ -9,6 +9,7 @@ namespace Servicios.EntidadesDelDominio.Entidades
     {
         int CedulaAdministrador { get; set; }
         string NombreAdministrador { get; set; }
+        CuentaUsuario CuentaUsuario { get; set; } //Faltaba
 
 
         public Administrador(int CedulaAdministrador, string NombreAdministrador)

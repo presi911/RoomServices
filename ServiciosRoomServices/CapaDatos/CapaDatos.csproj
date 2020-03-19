@@ -82,7 +82,9 @@
     <Compile Include="CalificacionesArrendatario.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ControlRepository\ControlAlquilerAlojamiento.cs" />
     <Compile Include="ControlRepository\ControlBuscarAlojamiento.cs" />
+    <Compile Include="ControlRepository\ControlLogueoUsuario.cs" />
     <Compile Include="CuentasBancarias.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

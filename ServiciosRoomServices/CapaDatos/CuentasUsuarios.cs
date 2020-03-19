@@ -12,9 +12,17 @@ namespace CapaDatos
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
 
     public partial class CuentasUsuarios
     {
+        private IQueryable<CuentasUsuarios> usuarioBD;
+
+        public CuentasUsuarios(IQueryable<CuentasUsuarios> usuarioBD)
+        {
+            this.usuarioBD = usuarioBD;
+        }
+
         [Key]
         public string email { get; set; }
         public string contrasena { get; set; }

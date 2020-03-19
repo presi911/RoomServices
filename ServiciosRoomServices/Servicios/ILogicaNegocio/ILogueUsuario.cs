@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace CapaDatos.IGestionInformacion
+using Servicios.EntidadesDelDominio.Entidades;
+
+namespace Servicios.ILogicaNegocio
 {
-    public interface ILogueoUsuario
+    public interface ILogueUsuario
     {
-        bool logueoDatos(string email, string contrasena);
+        bool logueoDatosUser(string email, string contrasena);
         bool verificarArrendador(string cedula);
         bool verificarArrendatario(string cedula);
         bool verificarAdministrador(string cedula);
+        string mostrarDatosPerfil(String cedula);
 
-        Usuarios mostrarDatosPerfil(String cedula);
     }
 }

@@ -10,7 +10,6 @@ namespace Servicios.EntidadesDelDominio.Entidades
         int NúmeroCuenta { get; }
         private double saldoCuenta;
 
-
         public double SaldoCuenta 
         {
             get => this.saldoCuenta;

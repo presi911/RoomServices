@@ -12,6 +12,7 @@ namespace Servicios.EntidadesDelDominio.Entidades
         int IdArrendatario { get; }
         string TipoArrendador { get; set; }
         List<Calificacion> listCalificacion;
+        List<Alojamiento> listAlojamientos { get; set; }//Faltaba
 
         /// <summary>
         /// Permite generar una nueva instancia de tipo Arrendatario 
