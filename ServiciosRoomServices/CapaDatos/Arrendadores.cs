@@ -11,7 +11,9 @@ namespace CapaDatos
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Arrendadores
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,8 +22,9 @@ namespace CapaDatos
             this.Alojamientos = new HashSet<Alojamientos>();
             this.CalificacionesArrendatario = new HashSet<CalificacionesArrendatario>();
         }
-    
+        
         public int idArrendador { get; set; }
+        [Key, ForeignKey("Usuarios")]
         public string cedula { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

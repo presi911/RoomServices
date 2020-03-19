@@ -16,13 +16,13 @@ namespace CapaDatos
     public partial class RoomServicesEntities : DbContext
     {
         public RoomServicesEntities()
-            : base("name=RoomServicesEntities")
+            : base("RoomServicesEntities")
         {
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            //throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<Administradores> Administradores { get; set; }

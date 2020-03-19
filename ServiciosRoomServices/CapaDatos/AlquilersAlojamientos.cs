@@ -11,9 +11,11 @@ namespace CapaDatos
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class AlquilersAlojamientos
     {
+        [Key]
         public int numeroContrato { get; set; }
         public int numeroMeses { get; set; }
         public decimal pagoMensual { get; set; }

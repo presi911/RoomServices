@@ -11,12 +11,18 @@ namespace CapaDatos
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class CalificacionesArrendatario
     {
+        [Key, Column(Order = 0)]
         public int idCalificacion { get; set; }
+        [Key, Column(Order = 1)]
         public string cedulaArrendatario { get; set; }
+        [Key, Column(Order = 2)]
         public string cedulaArrendador { get; set; }
+        [Key, Column(Order = 3)]
         public System.DateTime fechaCalificacion { get; set; }
     
         public virtual Arrendadores Arrendadores { get; set; }

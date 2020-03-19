@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7ef0988bac1c47379d1a997abc62048c" Name="Diagram1">
+      <Diagram DiagramId="e696313a02644cf788fca040c9fc737f" Name="Diagram1">
         <EntityTypeShape EntityType="RoomServicesModel.Administradores" Width="1.5" PointX="5.75" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RoomServicesModel.AlbumFotograficos" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="RoomServicesModel.Alojamientos" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RoomServicesModel.AlquilersAlojamientos" Width="1.5" PointX="8.625" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RoomServicesModel.Arrendadores" Width="1.5" PointX="2.5" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.AlquilersAlojamientos" Width="1.5" PointX="7.5" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.Arrendadores" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="RoomServicesModel.Arrendatarios" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RoomServicesModel.Calificaciones" Width="1.5" PointX="9.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.Calificaciones" Width="1.5" PointX="8.25" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="RoomServicesModel.CalificacionesAlojamiento" Width="1.5" PointX="10.5" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RoomServicesModel.CalificacionesArrendatario" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="RoomServicesModel.CuentasBancarias" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="RoomServicesModel.CuentasUsuarios" Width="1.5" PointX="8" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RoomServicesModel.Ubicaciones" Width="1.5" PointX="2.625" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RoomServicesModel.Usuarios" Width="1.5" PointX="0.5" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.Ubicaciones" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RoomServicesModel.Usuarios" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
         <AssociationConnector Association="RoomServicesModel.FK_CuentasUsuarios_Administradores" ManuallyRouted="false" />
         <AssociationConnector Association="RoomServicesModel.FK_AlbumFotograficos_Alojamientos" ManuallyRouted="false" />
         <AssociationConnector Association="RoomServicesModel.FK_Alojamientos_Arrendadores" ManuallyRouted="false" />

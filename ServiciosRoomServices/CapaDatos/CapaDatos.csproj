@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,10 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -51,88 +54,102 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administradores.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
     <Compile Include="AlbumFotograficos.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
     <Compile Include="Alojamientos.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
     <Compile Include="AlquilersAlojamientos.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
     <Compile Include="Arrendadores.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
     <Compile Include="Arrendatarios.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
     <Compile Include="Calificaciones.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
     <Compile Include="CalificacionesAlojamiento.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
     <Compile Include="CalificacionesArrendatario.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
+    <Compile Include="ControlRepository\ControlAlquilerAlojamiento.cs" />
+    <Compile Include="ControlRepository\ControlBuscarAlojamiento.cs" />
+    <Compile Include="ControlRepository\ControlLogueoUsuario.cs" />
     <Compile Include="CuentasBancarias.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
     <Compile Include="CuentasUsuarios.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IGestionInformacion\IAlquilarAlojamiento.cs" />
+    <Compile Include="IGestionInformacion\IBuscarAlojamiento.cs" />
+    <Compile Include="IGestionInformacion\ILogueoUsuario.cs" />
+    <Compile Include="IGestionInformacion\IRegistrarAlojamiento.cs" />
+    <Compile Include="IGestionInformacion\IRegistroUsuario.cs" />
+    <Compile Include="ModelData.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelData.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RepositoryDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RepositoryDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RepositoryDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RepositoryDB.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Ubicaciones.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.cs">
-      <DependentUpon>RepositoryDB.tt</DependentUpon>
+      <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="RepositoryDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RepositoryDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="packages.config" />
-    <None Include="RepositoryDB.edmx.diagram">
-      <DependentUpon>RepositoryDB.edmx</DependentUpon>
+    <EntityDeploy Include="ModelData.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelData.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelData.edmx.diagram">
+      <DependentUpon>ModelData.edmx</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="RepositoryDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RepositoryDB.Context.cs</LastGenOutput>
-      <DependentUpon>RepositoryDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="RepositoryDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RepositoryDB.edmx</DependentUpon>
-      <LastGenOutput>RepositoryDB.cs</LastGenOutput>
-    </Content>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelData.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelData.edmx</DependentUpon>
+      <LastGenOutput>ModelData.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelData.edmx</DependentUpon>
+      <LastGenOutput>ModelData.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
 </Project>
