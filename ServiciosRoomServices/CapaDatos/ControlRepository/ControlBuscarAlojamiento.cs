@@ -43,12 +43,13 @@ namespace CapaDatos.ControlRepository
     /// <returns>Lista de alojamientos que cumplen con el criterio ingresado por el usuario</returns>
     public List<Alojamientos> ListarAlojamientos(string info)
     {
-
+        //Consultando 
         var consulta = (from item in modeloBD.Alojamientos
                        where ((item.titulo.Contains(info)) || item.descripcionAlojamiento.Contains(info))
                        select item).ToList();
 
-            var m = ConsultarAlojamiento(2);
+         //var m = ConsultarAlojamiento(2);
+
 
         return consulta;
 
@@ -65,10 +66,12 @@ namespace CapaDatos.ControlRepository
     /// <returns>Objeto tipo Alojamientos que corresponde al id</returns>
     public Alojamientos ConsultarAlojamiento(int idAlojamiento)
         {
+            //Mediante una consulta de Linq obtengo el alojamiento que corresponde con su id
             var consulta = (from item in modeloBD.Alojamientos
                             where (item.idAlojamiento==idAlojamiento)
                             select item).ToList();
 
+            //Retorno el alojamiento
             return consulta.Count() != 0 ? consulta.First() : null;
         }
 
@@ -93,10 +96,11 @@ namespace CapaDatos.ControlRepository
         {
             //Donde voy almacenando la suma de todas la calificaciones realizadas a la habitación:
             int suma = 0;
-            //Obtengo la coleccion
+            //Obtengo la coleccion con todas las calificaciones realizadas a la habitación con su id
             var calificaciones = this.RetornarCalificaciones(idHabitacion);
             
-
+            //Recorro la lista de calificaciones, consultando el valor asignado a esa calificación mediante una consulta linq
+            //voy acumulando en una variable llamada suma:
             foreach (var calificacion in calificaciones)
             {
                 var consulta = (from item in modeloBD.Calificaciones
@@ -108,7 +112,7 @@ namespace CapaDatos.ControlRepository
                     suma += (int)consulta.First();
                 }
             }
-
+            //retorno el promedio de las calificaciones
             return suma / calificaciones.Count();
             
             
