@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace CapaDatos.IGestionInformacion
 {
-    interface ILogueoUsuario
+    public interface ILogueoUsuario
     {
+        CuentasUsuarios logueoDatos(string email, string contrasena);
+        Arrendatarios verificarArrendador(string cedula);
+        Arrendadores verificarArrendatario(string cedula);
+        Administradores verificarAdministrador(string cedula);
+        Usuarios mostrarPerfil(String cedula);
     }
 }

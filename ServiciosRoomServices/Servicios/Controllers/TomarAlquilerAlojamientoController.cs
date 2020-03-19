@@ -26,7 +26,7 @@ namespace Servicios.Controllers
         [HttpGet]
         public ICollection<EntidadesDelDominio.Entidades.Alquiler> AlquilarAlojamiento(int filtro)
         {
-            //var alquiler = Alquilar.listarAlojamiento(filtro);
+            var alquiler = Alquilar.listarAlojamiento(filtro);
 
 
             return null;
