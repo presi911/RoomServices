@@ -19,13 +19,20 @@ namespace APIRest.Controllers
     {
         readonly IControlLogueoUsuario control;
 
+        public LogueController() {
+            control = new APIRestService.ControlLogueoUsuario();
+        }
+
+
         // GET: api/Logueo
+        [HttpGet]
         public JObject GetInformacionLogueUsuario(String email, String contrasena)
         {
             return control.informacionLogueUsuario(email, contrasena);
         }
 
         // GET: api/Logueo/PermisoUsuario
+        [HttpGet]
         public bool GetPermisoIngreso(string email, string contrasena)
         {
             return control.permisoIngreso(email, contrasena);
