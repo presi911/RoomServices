@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 using Negocio.ControlRepository;
@@ -11,18 +8,17 @@ using Datos;
 using APIRest.IServices;
 using APIRest.APIRestService;
 using Newtonsoft.Json.Linq;
-
-
 namespace APIRest.Controllers
 {
-    public class LogueController : ApiController
+    public class LogueoController : ApiController
     {
+
         readonly IControlLogueoUsuario control;
 
-        public LogueController() {
+        public LogueoController()
+        {
             control = new APIRestService.ControlLogueoUsuario();
         }
-
 
         // GET: api/Logueo
         [HttpGet]
@@ -31,7 +27,7 @@ namespace APIRest.Controllers
             return control.informacionLogueUsuario(email, contrasena);
         }
 
-        // GET: api/Logueo/PermisoUsuario
+        // GET: api/Logueo/5
         [HttpGet]
         public bool GetPermisoIngreso(string email, string contrasena)
         {

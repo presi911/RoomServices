@@ -167,6 +167,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\BuscarAlojamientoController.cs" />
     <Compile Include="Controllers\LogueController.cs" />
+    <Compile Include="Controllers\LogueoController.cs" />
     <Compile Include="Controllers\RegistroUsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
