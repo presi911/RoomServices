@@ -15,8 +15,8 @@ namespace Negocio.ILogicaNegocio
         bool verificarArrendatario(string cedula);
         bool verificarAdministrador(string cedula);
 
-        Arrendador mostrarDatosArrendador(String cedula);
-        Arrendatario mostrarDatosArrendatario (String cedula);
-        Administrador mostrarDatosAdministrador(String cedula);
+        Arrendador mostrarDatosArrendador(string email, string contrasena);
+        Arrendatario mostrarDatosArrendatario(string email, string contrasena);
+        Administrador mostrarDatosAdministrador(string email, string contrasena);
     }
 }

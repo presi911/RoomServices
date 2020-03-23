@@ -5,35 +5,31 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+using Negocio.ControlRepository;
+using Dominio;
+using Datos;
+using APIRest.IServices;
+using APIRest.APIRestService;
+using Newtonsoft.Json.Linq;
+
+
 namespace APIRest.Controllers
 {
     public class LogueController : ApiController
     {
-        // GET: api/Logue
-        public IEnumerable<string> Get()
+        readonly IControlLogueoUsuario control;
+
+        // GET: api/Logueo
+        public JObject GetInformacionLogueUsuario(String email, String contrasena)
         {
-            return new string[] { "value1", "value2" };
+            return control.informacionLogueUsuario(email, contrasena);
         }
 
-        // GET: api/Logue/5
-        public string Get(int id)
+        // GET: api/Logueo/PermisoUsuario
+        public bool GetPermisoIngreso(string email, string contrasena)
         {
-            return "value";
+            return control.permisoIngreso(email, contrasena);
         }
 
-        // POST: api/Logue
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Logue/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Logue/5
-        public void Delete(int id)
-        {
-        }
     }
 }

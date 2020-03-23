@@ -57,7 +57,7 @@ namespace Negocio.ControlRepository
                 }
                 else
                 {
-                    return "No existe";
+                    return "NaN";
                 }
             }
         }
@@ -68,12 +68,30 @@ namespace Negocio.ControlRepository
         /// </summary>
         /// <param name="cedula"></param>
         /// <returns></returns>
-        public Administrador mostrarDatosAdministrador(string cedula)
+        public Administrador mostrarDatosAdministrador(string email, string contrasena)
         {
             using (RoomServicesEntities entidades = new RoomServicesEntities())
             {
-                
 
+                String cedulaAdm = obtenerCedulaUsuario(email, contrasena);
+
+                if (!cedulaAdm.Equals("Nan")) {
+
+                    bool esAdm = verificarAdministrador(cedulaAdm);
+
+                    if (esAdm) {
+
+                        var usuarioBD = (from item in entidades.Administradores
+                                         where (item.cedula.Equals(cedulaAdm))
+                                         select item);
+                        var admin = usuarioBD.First();
+                        return new Administrador(Int32.Parse(admin.cedula), admin.nombre + " " + admin.apellido);
+                    
+                    }
+                
+                }
+
+                return null;
 
 
             }
@@ -83,11 +101,35 @@ namespace Negocio.ControlRepository
         /// </summary>
         /// <param name="cedula"></param>
         /// <returns></returns>
-        public Arrendador mostrarDatosArrendador(string cedula)
+        public Arrendador mostrarDatosArrendador(string email, string contrasena)
         {
             using (RoomServicesEntities entidades = new RoomServicesEntities())
             {
 
+
+                String cedula = obtenerCedulaUsuario(email, contrasena);
+
+                if (!cedula.Equals("Nan"))
+                {
+
+                    bool esArrendador = verificarArrendador(cedula);
+
+                    if (esArrendador)
+                    {
+
+                        var usuarioBD = (from item in entidades.Usuarios
+                                         where (item.cedula.Equals(cedula))
+                                         select item);
+
+                        var user = usuarioBD.First();
+
+                        return new Arrendador(user.cedula, user.nombre, user.apellido, user.fechaNacimiento,user.nacionalidad, user.genero[0]);
+
+                    }
+
+                }
+
+                return null;
             }
         }
 
@@ -96,10 +138,40 @@ namespace Negocio.ControlRepository
         /// </summary>
         /// <param name="cedula"></param>
         /// <returns></returns>
-        public Arrendatario mostrarDatosArrendatario(string cedula)
+        public Arrendatario mostrarDatosArrendatario(string email, string contrasena)
         {
             using (RoomServicesEntities entidades = new RoomServicesEntities())
             {
+
+
+                String cedula = obtenerCedulaUsuario(email, contrasena);
+
+                if (!cedula.Equals("Nan"))
+                {
+                    
+                    bool esArrendatario = verificarArrendatario(cedula);
+
+                    if (esArrendatario)
+                    {
+
+                        var usuarioBD = (from item in entidades.Usuarios
+                                         where (item.cedula.Equals(cedula))
+                                         select item);
+
+                        var user = usuarioBD.First();
+
+                        var arrend = (from item in entidades.Arrendatarios
+                                         where (item.cedulaArrendatario.Equals(cedula))
+                                         select item);
+
+                        var infoArred = arrend.First();
+                        return new Arrendatario(user.cedula, user.nombre, user.apellido, user.fechaNacimiento, user.nacionalidad, user.genero[0], infoArred.tipoArrendador);
+
+                    }
+
+                }
+
+                return null;
 
             }
         }
