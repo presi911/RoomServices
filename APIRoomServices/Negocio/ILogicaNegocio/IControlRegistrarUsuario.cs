@@ -8,5 +8,6 @@ namespace Negocio.ILogicaNegocio
 {
     interface IControlRegistrarUsuario
     {
+
     }
 }

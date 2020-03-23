@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Datos;
 using Dominio.EntidadesDelDominio.Entidades;
 using Negocio.ILogicaNegocio;
+using Negocio.ControlExcepciones;
 
 namespace Negocio.ControlRepository
 {
@@ -33,12 +34,19 @@ namespace Negocio.ControlRepository
                                     CedulaArrendador= item.cedulaArrendador,
 
                                 });
-                var alojamiento = consulta.First();
-                alojamiento.CalificacionesAlojamiento = this.RetornarCalificacionesAlojamiento(idAlojamiento);
+                if (consulta.Count() > 0)
+                {
+                    var alojamiento = consulta.First();
+                    alojamiento.CalificacionesAlojamiento = this.RetornarCalificacionesAlojamiento(idAlojamiento);
 
 
-                //Retorno el alojamiento
-                return alojamiento;
+                    //Retorno el alojamiento
+                    return alojamiento;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -53,24 +61,33 @@ namespace Negocio.ControlRepository
             List<Calificacion> lista = new List<Calificacion>();
             using (RoomServicesEntities entidades = new RoomServicesEntities())
             {
-                var consulta = (from item in entidades.Alojamientos
-                                where (item.idAlojamiento == idAlojamiento)
-                                select item.CalificacionesAlojamiento).First();
+                
+                var query = (from item in entidades.Alojamientos
+                                    where (item.idAlojamiento == idAlojamiento)
+                                    select item.CalificacionesAlojamiento);
 
-                foreach (var item in consulta)
-                {
-                    var calificacion = this.RetornarCalificacion(item.idCalificacion);
-                    lista.Add(new Calificacion()
-                    {
-                        IdCalificacion = item.idCalificacion,
-                        CalificacionHabitacion = (byte)calificacion.calificacionAlojamiento,
-                        ComentarioCalificacion = calificacion.comentarioAlojamiento
+                if (query.Count() > 0) {     
+                        var calificaiones  = query.First();
+                        foreach (var item in calificaiones)
+                        {
+                            var calificacion = this.RetornarCalificacion(item.idCalificacion);
+                            lista.Add(new Calificacion()
+                            {
+                                IdCalificacion = item.idCalificacion,
+                                CalificacionHabitacion = (byte)calificacion.calificacionAlojamiento,
+                                ComentarioCalificacion = calificacion.comentarioAlojamiento
 
-                    });
+                            });
 
+                        }
+                        return lista;
                 }
-                return lista;
-
+                else
+                {
+                    return null;
+                }
+                
+                
             }
         }
 
@@ -105,8 +122,14 @@ namespace Negocio.ControlRepository
                 var consulta = (from arrend in entidades.Arrendadores join usu in entidades.Usuarios
                                 on arrend.cedula equals usu.cedula
                                 where (arrend.cedula == cedulaArrendador)
-                                select new Arrendador(usu.cedula, usu.nombre, usu.apellido, usu.fechaNacimiento, usu.nacionalidad, usu.genero[0])
+                                select new Arrendador()
                                 {
+                                    Cedula= usu.cedula,
+                                    Nombre= usu.nombre,
+                                    Apellido= usu.apellido,
+                                    Fecha = usu.fechaNacimiento,
+                                    Nacionalidad= usu.nacionalidad,
+                                    Genero= usu.genero,
                                     IdArrendador = arrend.idArrendador
                                 }).First();
 
@@ -126,7 +149,7 @@ namespace Negocio.ControlRepository
         {
 
             var alojamiento = this.ConsultarAlojamiento(idAlojamiento);
-            return this.ConsultarInformacionArrendador(alojamiento.Arrendatario.Cedula);
+            return this.ConsultarInformacionArrendador(alojamiento.CedulaArrendador);
 
         }
 
@@ -187,15 +210,21 @@ namespace Negocio.ControlRepository
         public double PromedioCalificaciones(int idHabitacion)
         {
             var calificaciones = this.RetornarCalificacionesAlojamiento(idHabitacion);
-            double suma = 0;
-
-            foreach (var item in calificaciones)
+            if (calificaciones != null)
             {
-                suma += item.CalificacionHabitacion;
+                double suma = 0;
+
+                foreach (var item in calificaciones)
+                {
+                    suma += item.CalificacionHabitacion;
+                }
+
+                return suma / calificaciones.Count();
             }
+            else {
 
-            return suma / calificaciones.Count();
-
+                return 0;
+            }
         }
     }
 }
