@@ -8,8 +8,8 @@ namespace Dominio.EntidadesDelDominio.Entidades
 {
     public class Administrador
     {
-        int CedulaAdministrador { get; set; }
-        string NombreAdministrador { get; set; }
+       public int CedulaAdministrador { get; set; }
+       public string NombreAdministrador { get; set; }
 
 
         public Administrador(int CedulaAdministrador, string NombreAdministrador)
