@@ -29,9 +29,9 @@ namespace APIRest.Controllers
 
         // GET: api/Logueo/5
         [HttpGet]
-        public bool GetPermisoIngreso(string email, string contrasena)
+        public String GetPermisoIngreso(string email, string contrasena)
         {
-            return control.permisoIngreso(email, contrasena);
+            return control.permisoIngreso(email, contrasena).ToString();
         }
 
     }
