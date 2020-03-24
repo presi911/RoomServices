@@ -21,12 +21,25 @@ namespace APIRest.Controllers
         {
             control = new APIRestService.ControlLogueoUsuario();
         }
+        /// <summary>
+        /// Se obtiene información de logueo
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="contrasena"></param>
+        /// <returns></returns>
 
         // GET: api/Logue
         public JObject Get(string email, string contrasena)
         {
             return control.informacionLogueUsuario(email, contrasena);
         }
+
+        /// <summary>
+        /// Veridicar si tiene permiso el usuario para ingresar al sistema por medio del logueo
+        /// </summary>
+        /// <param name="correo"></param>
+        /// <param name="contrasena"></param>
+        /// <returns></returns>
 
         // GET: api/Logue/5
         public string GetPermisoIngreso(string correo,string contrasena)
