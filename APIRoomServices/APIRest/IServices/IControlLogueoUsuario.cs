@@ -1,3 +1,4 @@
+
 ﻿using Dominio.EntidadesDelDominio.Entidades;
 using Newtonsoft.Json.Linq;
 using System;
@@ -10,6 +11,7 @@ namespace APIRest.IServices
     public interface IControlLogueoUsuario
     {
 
+
         JObject informacionLogueUsuario(String email, String contrasena);
         bool permisoIngreso(String email, String contrasena);
 
@@ -17,7 +19,6 @@ namespace APIRest.IServices
 
         Arrendatario mostarArrendatario(String email, String contrasena);
         Administrador mostarAdministrador(String email, String contrasena);
-
 
     }
 }

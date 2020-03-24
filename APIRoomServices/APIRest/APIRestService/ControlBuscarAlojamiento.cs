@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using Dominio.EntidadesDelDominio.Entidades;
 using Negocio.ControlRepository;
+
 using APIRest.ExcepcionesAPIRestService;
+
 
 using APIRest.IServices;
 using Newtonsoft.Json.Linq;
@@ -28,8 +30,10 @@ namespace APIRest.APIRestService
 
         public Arrendador ConsultarInformacionArrendador(string cedulaArrendador)
         {
+
             string cedula = cedulaArrendador.Trim();
             return control.ConsultarInformacionArrendador(cedula);
+
         }
 
         public double ConsultarPromedioCalificaciones(int idHabitacion)
@@ -39,6 +43,7 @@ namespace APIRest.APIRestService
 
         public IList<JObject> ListarAlojamientos(string filtro)
         {
+
             filtro = filtro.Trim();
             IList<JObject> alojamientosJSON = new List<JObject>();
 
@@ -79,6 +84,7 @@ namespace APIRest.APIRestService
         {
             double promedio = this.ConsultarPromedioCalificaciones(idAlojamiento);
             Alojamiento alojamiento = this.ConsultarAlojamiento(idAlojamiento);
+
             if (alojamiento!=null)
             {
                 var arrendador = this.ConsultarInformacionArrendadorHabitacion(alojamiento.IdAlojamiento);
@@ -101,7 +107,9 @@ namespace APIRest.APIRestService
         /// <param name="arrendador"></param>
         /// <returns></returns>
         public JObject ArmarJSONInformacion(double promedioCalificacion, Alojamiento alojamiento,Arrendador arrendador)
+
         {       
+
                 return JObject.FromObject(new
                 {
                     alojamiento = new
@@ -120,7 +128,9 @@ namespace APIRest.APIRestService
                     calificacion = promedioCalificacion
 
                 });
+
             
+
         }
 
     }

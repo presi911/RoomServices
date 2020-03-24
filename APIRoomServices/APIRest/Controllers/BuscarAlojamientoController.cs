@@ -33,6 +33,7 @@ namespace APIRest.Controllers
         public JObject ConsultarInformacionAlojamiento(int id)
         {
             return control.RetornarInformacionAlojamiento(id);
+
         }
         
     }

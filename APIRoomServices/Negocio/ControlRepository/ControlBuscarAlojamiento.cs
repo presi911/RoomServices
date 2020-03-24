@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Datos;
 using Dominio.EntidadesDelDominio.Entidades;
 using Negocio.ILogicaNegocio;
+
 using Negocio.ControlExcepciones;
 
 namespace Negocio.ControlRepository
@@ -34,6 +35,7 @@ namespace Negocio.ControlRepository
                                     CedulaArrendador= item.cedulaArrendador,
 
                                 });
+
                 if (consulta.Count() > 0)
                 {
                     var alojamiento = consulta.First();
@@ -47,6 +49,7 @@ namespace Negocio.ControlRepository
                 {
                     return null;
                 }
+
             }
         }
 
@@ -61,6 +64,7 @@ namespace Negocio.ControlRepository
             List<Calificacion> lista = new List<Calificacion>();
             using (RoomServicesEntities entidades = new RoomServicesEntities())
             {
+
                 
                 var query = (from item in entidades.Alojamientos
                                     where (item.idAlojamiento == idAlojamiento)
@@ -88,6 +92,7 @@ namespace Negocio.ControlRepository
                 }
                 
                 
+
             }
         }
 
@@ -122,6 +127,7 @@ namespace Negocio.ControlRepository
                 var consulta = (from arrend in entidades.Arrendadores join usu in entidades.Usuarios
                                 on arrend.cedula equals usu.cedula
                                 where (arrend.cedula == cedulaArrendador)
+
                                 select new Arrendador()
                                 {
                                     Cedula= usu.cedula,
@@ -131,6 +137,7 @@ namespace Negocio.ControlRepository
                                     Nacionalidad= usu.nacionalidad,
                                     Genero= usu.genero,
                                     IdArrendador = arrend.idArrendador
+
                                 }).First();
 
                 return consulta;
@@ -149,7 +156,9 @@ namespace Negocio.ControlRepository
         {
 
             var alojamiento = this.ConsultarAlojamiento(idAlojamiento);
+
             return this.ConsultarInformacionArrendador(alojamiento.CedulaArrendador);
+
 
         }
 
@@ -180,7 +189,9 @@ namespace Negocio.ControlRepository
         /// <returns>Lista con los alojamientos que cumplen el criterio de búsqueda especificado por el usuario</returns>
         public IList<Alojamiento> ListarAlojamientos(string filtro)
         {
+
             List<string> objetos = new List<string>();
+
 
             using (RoomServicesEntities entidades = new RoomServicesEntities())
             {
@@ -190,7 +201,9 @@ namespace Negocio.ControlRepository
                                 {
                                     Titulo = item.titulo,
                                     TipoAlojamiento = item.tipoAlojamiento,
-                                    Estado = item.estado,
+
+                                    Estado = (int)item.estado,
+
                                     IdAlojamiento = item.idAlojamiento,
                                     Precio = (double)item.precio
                                 }).ToList();
@@ -210,6 +223,7 @@ namespace Negocio.ControlRepository
         public double PromedioCalificaciones(int idHabitacion)
         {
             var calificaciones = this.RetornarCalificacionesAlojamiento(idHabitacion);
+
             if (calificaciones != null)
             {
                 double suma = 0;
@@ -225,6 +239,7 @@ namespace Negocio.ControlRepository
 
                 return 0;
             }
+
         }
     }
 }

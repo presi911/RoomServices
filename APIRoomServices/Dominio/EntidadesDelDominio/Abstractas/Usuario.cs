@@ -14,12 +14,16 @@ namespace Dominio.EntidadesDelDominio.Abstractas
         public string Apellido { get; set; }
         public DateTime? Fecha { get; set; }
         public string Nacionalidad { get; set; }
+
         public string Genero { get; set; }
+
 
         CuentaBancaria cuentaBancaria;
         CuentaUsuario cuentaUsuario;
 
+
         protected Usuario(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, string genero)
+
         {
             Cedula = cedula;
             Nombre = nombre;
@@ -28,6 +32,7 @@ namespace Dominio.EntidadesDelDominio.Abstractas
             Nacionalidad = nacionalidad;
             Genero = genero;
         }
+
 
         public Usuario()
         {
