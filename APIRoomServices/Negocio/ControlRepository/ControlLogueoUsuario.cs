@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 using Datos;
 using Dominio.EntidadesDelDominio.Entidades;
+
 using Negocio.ILogicaNegocio;
 
 namespace Negocio.ControlRepository
 {
+
     public class ControlLogueoUsuario : IControlLogueoUsuario
     {
         //Verificamos que el usuario se encuentre registrado
@@ -244,5 +247,6 @@ namespace Negocio.ControlRepository
 
             }
         }
+
     }
 }
