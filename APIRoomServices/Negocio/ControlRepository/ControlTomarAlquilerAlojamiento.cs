@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Dominio.EntidadesDelDominio.Entidades;
 using Negocio.ILogicaNegocio;
 using Negocio;
@@ -94,5 +95,6 @@ namespace Negocio.ControlRepository
             return 1;
             
         }
+
     }
 }

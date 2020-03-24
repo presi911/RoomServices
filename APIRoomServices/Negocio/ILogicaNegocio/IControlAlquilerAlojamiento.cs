@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 using Dominio.EntidadesDelDominio.Entidades;
 namespace Negocio.ILogicaNegocio
 {
@@ -19,6 +20,7 @@ namespace Negocio.ILogicaNegocio
 
 
         
+
 
     }
 }

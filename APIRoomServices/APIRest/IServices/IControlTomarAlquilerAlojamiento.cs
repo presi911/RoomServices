@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+
 using Dominio.EntidadesDelDominio.Entidades;
 using Newtonsoft.Json.Linq;
+
 
 namespace APIRest.IServices
 {
     public interface IControlTomarAlquilerAlojamiento
     {
+
 
         int estadoAlojamiento(int idAlojamiento, int estado);
 
@@ -19,6 +22,7 @@ namespace APIRest.IServices
 
         JObject InformacionAlojamientoGeneral(int alojamiento, String arrendador, String arrendatario);
         
+
 
 
     }

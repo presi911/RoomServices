@@ -7,5 +7,6 @@ namespace APIRest.IServices
 {
     public interface IControlRegistroUsuario
     {
+
     }
 }

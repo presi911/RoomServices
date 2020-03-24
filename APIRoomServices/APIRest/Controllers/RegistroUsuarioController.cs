@@ -29,6 +29,7 @@ namespace APIRest.Controllers
         // PUT: api/RegistroUsuario/5
         public void Put(int id, [FromBody]string value)
         {
+
         }
 
         // DELETE: api/RegistroUsuario/5
