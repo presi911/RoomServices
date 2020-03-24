@@ -34,6 +34,7 @@ namespace Negocio.ControlRepository
                                     CedulaArrendador= item.cedulaArrendador,
 
                                 });
+
                 if (consulta.Count() > 0)
                 {
                     var alojamiento = consulta.First();
@@ -190,7 +191,7 @@ namespace Negocio.ControlRepository
                                 {
                                     Titulo = item.titulo,
                                     TipoAlojamiento = item.tipoAlojamiento,
-                                    Estado = item.estado,
+                                    Estado = (int)item.estado,
                                     IdAlojamiento = item.idAlojamiento,
                                     Precio = (double)item.precio
                                 }).ToList();

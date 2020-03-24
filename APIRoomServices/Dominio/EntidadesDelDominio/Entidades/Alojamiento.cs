@@ -12,7 +12,7 @@ namespace Dominio.EntidadesDelDominio.Entidades
         public string DescripcionAlojamiento { get; set; }
         private double precio;
         public string TipoAlojamiento { get; set; }
-        public Nullable<int> Estado { get; set; }
+        public int Estado { get; set; }
         public int IdAlojamiento { get; set; }
         public string CedulaArrendador { get; set; }
         public Arrendatario Arrendatario { get; set; }
