@@ -123,7 +123,7 @@ namespace Negocio.ControlRepository
 
                         var user = usuarioBD.First();
 
-                        return new Arrendador(user.cedula, user.nombre, user.apellido, user.fechaNacimiento,user.nacionalidad, user.genero[0]);
+                        return new Arrendador(user.cedula, user.nombre, user.apellido, user.fechaNacimiento,user.nacionalidad, user.genero);
 
                     }
 
@@ -165,7 +165,7 @@ namespace Negocio.ControlRepository
                                          select item);
 
                         var infoArred = arrend.First();
-                        return new Arrendatario(user.cedula, user.nombre, user.apellido, user.fechaNacimiento, user.nacionalidad, user.genero[0], infoArred.tipoArrendador);
+                        return new Arrendatario(user.cedula, user.nombre, user.apellido, user.fechaNacimiento, user.nacionalidad, user.genero, infoArred.tipoArrendador);
 
                     }
 
