@@ -42,9 +42,9 @@ namespace APIRest.Controllers
         /// <returns></returns>
 
         // GET: api/Logue/5
-        public string GetPermisoIngreso(string correo,string contrasena)
+        public string GetPermisoIngreso(string correoUsuario,string contrasenaUsuario)
         {
-            return control.permisoIngreso(correo, contrasena).ToString();
+            return control.permisoIngreso(correoUsuario, contrasenaUsuario).ToString();
         }
 
         // POST: api/Logue
