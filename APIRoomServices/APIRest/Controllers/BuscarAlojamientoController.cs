@@ -28,6 +28,7 @@ namespace APIRest.Controllers
             
         }
 
+
         // GET api/values/5
         [HttpGet]
         public JObject ConsultarInformacionAlojamiento(int id)
