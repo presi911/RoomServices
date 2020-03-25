@@ -30,5 +30,9 @@ namespace Dominio.EntidadesDelDominio.Entidades
             TipoArrendador = tipoArrendador;
 
         }
+
+        public Arrendatario()
+        {
+        }
     }
 }

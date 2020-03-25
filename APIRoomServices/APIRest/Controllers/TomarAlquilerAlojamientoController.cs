@@ -10,22 +10,26 @@ using Datos;
 using APIRest.IServices;
 using APIRest.APIRestService;
 using Newtonsoft.Json.Linq;
-
 namespace APIRest.Controllers
 {
     public class TomarAlquilerAlojamientoController : ApiController
     {
         readonly IControlTomarAlquilerAlojamiento control;
-       public TomarAlquilerAlojamientoController ()
+        public TomarAlquilerAlojamientoController()
         {
             control = new APIRestService.ControlTomarAlquilerAlojamiento();
         }
         // GET: api/TomarAlquilerAlojamiento
         public JObject GET(int idAlojamiento, String cedulaArrendador, String cedulaArrendatario)
         {
-            return control.InformacionAlojamientoGeneral(idAlojamiento,cedulaArrendador,cedulaArrendatario);
+            return control.InformacionAlojamientoGeneral(idAlojamiento, cedulaArrendador, cedulaArrendatario);
         }
 
-       
+        // POST: api/TomarAlquilerAlojamiento
+        public Boolean Post(int numeroContrato, int numeroMeses, decimal pagoMensual, string fechaAlquiler, int idAlojamiento)
+        {
+            return control.ingresarDatosFaltantes(numeroContrato,numeroMeses,pagoMensual,fechaAlquiler,idAlojamiento);
+        }
+
     }
 }

@@ -51,7 +51,6 @@ namespace APIRest.APIRestService
             Arrendatario Arrendatario = this.listaArrendatario(arrendatario);
             return this.InformacionAlquilado(Alojamiento,Arrendador,Arrendatario);
 
-
         }
         public JObject InformacionAlquilado(Alojamiento alojamiento, Arrendador arrendador, Arrendatario arrendatario)
         {
@@ -103,7 +102,12 @@ namespace APIRest.APIRestService
 
         }
 
-        
+        public Boolean ingresarDatosFaltantes(int numeroContrato, int numeroMeses, decimal pagoMensual, string fechaAlquiler, int idAlojamiento)
+        {
+            return control.ingresarDatosFaltantes(numeroContrato,numeroMeses,pagoMensual,fechaAlquiler,idAlojamiento);
+           
+        }
+
 
     }
 }
