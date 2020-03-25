@@ -52,7 +52,8 @@ namespace Negocio.ControlRepository
             using (RoomServicesEntities entidades = new RoomServicesEntities())
             {
 
-                if (this.ConsultarUsuario(cedula)==true)
+                if (this.ConsultarUsuario(cedula)==true &&
+                    (tipoPerfil.Equals("ADMINISTRADOR") | tipoPerfil.Equals("ARRENDADOR") | tipoPerfil.Equals("ARRENDATARIO")))
                 {
                     Usuarios usuario = new Usuarios()
                     {
@@ -80,39 +81,46 @@ namespace Negocio.ControlRepository
         
                     entidades.SaveChanges();
 
-                    if (tipoPerfil.Equals("ADMINISTRADOR")) {
+                    if (tipoPerfil.Equals("ADMINISTRADOR"))
+                    {
 
                         Administradores admin = new Administradores()
                         {
-                            cedula=cedula,
-                            nombre=nombre,
-                            apellido=apellido,
+                            cedula = cedula,
+                            nombre = nombre,
+                            apellido = apellido,
                         };
                         entidades.Administradores.Add(admin);
                         entidades.SaveChanges();
 
-                    } else if (tipoPerfil.Equals("ARRENDADOR")) {
+                    }
+                    else if (tipoPerfil.Equals("ARRENDADOR"))
+                    {
 
-                        Arrendadores arrend = new Arrendadores() { 
-                            idArrendador= Int32.Parse(cedula),
-                            cedula =cedula,
+                        Arrendadores arrend = new Arrendadores()
+                        {
+                            idArrendador = Int32.Parse(cedula),
+                            cedula = cedula,
                         };
 
                         entidades.Arrendadores.Add(arrend);
                         entidades.SaveChanges();
 
-                    } else if (tipoPerfil.Equals("ARRENDATARIO")) {
+                    }
+                    else if (tipoPerfil.Equals("ARRENDATARIO"))
+                    {
 
                         Arrendatarios arrendatarios = new Arrendatarios()
                         {
-                            idArrendatario= Int32.Parse(cedula),
-                            tipoArrendador= "Huesped", 
-                            cedulaArrendatario=cedula,
+                            idArrendatario = Int32.Parse(cedula),
+                            tipoArrendador = "Huesped",
+                            cedulaArrendatario = cedula,
                         };
 
                         entidades.Arrendatarios.Add(arrendatarios);
                         entidades.SaveChanges();
                     }
+               
 
                     return true;
                 }
