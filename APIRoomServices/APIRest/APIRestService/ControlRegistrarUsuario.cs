@@ -27,9 +27,9 @@ namespace APIRest.APIRestService
             throw new NotImplementedException();
         }
 
-        public Boolean RegistrarUsuario(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, char genero)
+        public Boolean RegistrarUsuario(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, char genero, string email, string contrasena)
         {
-            return control.RegistrarUsuario(cedula, nombre, apellido, fecha, nacionalidad, genero);
+            return control.RegistrarUsuario(cedula, nombre, apellido, fecha, nacionalidad, genero,email,contrasena);
 
         }
     }

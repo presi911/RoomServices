@@ -170,6 +170,7 @@
     <Compile Include="Controllers\RegistroUsuarioController.cs" />
     <Compile Include="Controllers\TomarAlquilerAlojamientoController.cs" />
     <Compile Include="ExcepcionesAPIRestService\BuscarAlojamientoException.cs" />
+    <Compile Include="ExcepcionesAPIRestService\TomarAlquilerAlojamientoException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
