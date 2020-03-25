@@ -46,7 +46,7 @@ namespace Negocio.ControlRepository
         /// <param name="cedulaUsuario">Parámetro númerico con la cedula a  consultar en la base de datos</param>
         /// <returns>Valor tipo booleano </returns>
 
-        public Boolean RegistrarUsuario(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, char genero, string email, string contrasena)
+        public Boolean RegistrarUsuario(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, char genero, string email, string contrasena, string tipoPerfil)
         {
 
             using (RoomServicesEntities entidades = new RoomServicesEntities())
@@ -77,8 +77,42 @@ namespace Negocio.ControlRepository
                     };
                     entidades.CuentasUsuarios.Add(cuenta);
                    
-                
+        
                     entidades.SaveChanges();
+
+                    if (tipoPerfil.Equals("ADMINISTRADOR")) {
+
+                        Administradores admin = new Administradores()
+                        {
+                            cedula=cedula,
+                            nombre=nombre,
+                            apellido=apellido,
+                        };
+                        entidades.Administradores.Add(admin);
+                        entidades.SaveChanges();
+
+                    } else if (tipoPerfil.Equals("ARRENDADOR")) {
+
+                        Arrendadores arrend = new Arrendadores() { 
+                            idArrendador= Int32.Parse(cedula),
+                            cedula =cedula,
+                        };
+
+                        entidades.Arrendadores.Add(arrend);
+                        entidades.SaveChanges();
+
+                    } else if (tipoPerfil.Equals("ARRENDATARIO")) {
+
+                        Arrendatarios arrendatarios = new Arrendatarios()
+                        {
+                            idArrendatario= Int32.Parse(cedula),
+                            tipoArrendador= "Huesped", 
+                            cedulaArrendatario=cedula,
+                        };
+
+                        entidades.Arrendatarios.Add(arrendatarios);
+                        entidades.SaveChanges();
+                    }
 
                     return true;
                 }

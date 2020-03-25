@@ -22,17 +22,17 @@ namespace APIRest.Controllers
       
 
         // PUT: api/RegistroUsuario/5
-        public void Put(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, char genero, string email, string contrasena)
+        public void Put(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, char genero, string email, string contrasena, string tipoPerfil)
         {
-            control.RegistrarUsuario(cedula,nombre,apellido,fecha,nacionalidad,genero,email,contrasena);
+            control.RegistrarUsuario(cedula,nombre,apellido,fecha,nacionalidad,genero,email,contrasena, tipoPerfil);
 
         }
 
 
         // POST: api/RegistroUsuario
-        public Boolean Post(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, char genero, string email, string contrasena)
+        public Boolean Post(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, char genero, string email, string contrasena, string tipoPerfil)
         {
-            return control.RegistrarUsuario(cedula, nombre, apellido, fecha, nacionalidad, genero,email,contrasena);
+            return control.RegistrarUsuario(cedula, nombre, apellido, fecha, nacionalidad, genero,email,contrasena, tipoPerfil);
         }
 
     }
