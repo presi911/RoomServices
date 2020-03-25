@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace Negocio.ILogicaNegocio
 {
-    interface IControlRegistrarUsuario
+    public interface IControlRegistrarUsuario
     {
 
+        Boolean RegistrarUsuario(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, char genero, string email, string contrasena);
+        Boolean ConsultarUsuario(string cedulaUsuario);
+
     }
+
+
+
 }

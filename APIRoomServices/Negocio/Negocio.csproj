@@ -44,12 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-
     <Compile Include="ControlExcepciones\ControlBuscarAlojamientoException.cs" />
-
+    <Compile Include="ControlExcepciones\ControlTomarAlquilerAlojamientoException.cs" />
     <Compile Include="ControlRepository\ControlBuscarAlojamiento.cs" />
     <Compile Include="ControlRepository\ControlLogueoUsuario.cs" />
     <Compile Include="ControlRepository\ControlRegistrarAlojamiento.cs" />
+    <Compile Include="ControlRepository\ControlRegistrarUsuario.cs" />
     <Compile Include="ControlRepository\ControlTomarAlquilerAlojamiento.cs" />
     <Compile Include="ILogicaNegocio\IControlAlquilerAlojamiento.cs" />
     <Compile Include="ILogicaNegocio\IControlBuscarAlojamiento.cs" />

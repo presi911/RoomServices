@@ -6,8 +6,6 @@ using System.Web;
 using APIRest.IServices;
 using Dominio.EntidadesDelDominio.Entidades;
 using Negocio.ControlRepository;
-
-using APIRest.IServices;
 using Newtonsoft.Json.Linq;
 
 namespace APIRest.APIRestService
