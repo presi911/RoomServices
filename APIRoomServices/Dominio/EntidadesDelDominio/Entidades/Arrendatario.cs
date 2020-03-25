@@ -9,8 +9,10 @@ namespace Dominio.EntidadesDelDominio.Entidades
 {
     public class Arrendatario : Usuario
     {
-        int IdArrendatario { get; }
-        string TipoArrendador { get; set; }
+
+       public int IdArrendatario { get; set; }
+       public string TipoArrendador { get; set; }
+
         List<Calificacion> listCalificacion;
 
         /// <summary>
@@ -23,9 +25,14 @@ namespace Dominio.EntidadesDelDominio.Entidades
         /// <param name="nacionalidad"></param>
         /// <param name="genero"></param>
         /// <param name="tipoArrendador"><a</param>
-        public Arrendatario(string cedula, string nombre, string apellido, DateTime fecha, string nacionalidad, char genero, string tipoArrendador) : base(cedula, nombre, apellido, fecha, nacionalidad, genero)
+        public Arrendatario(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, string genero, string tipoArrendador) : base(cedula, nombre, apellido, fecha, nacionalidad, genero)
         {
             TipoArrendador = tipoArrendador;
+
+        }
+
+        public Arrendatario()
+        {
         }
     }
 }

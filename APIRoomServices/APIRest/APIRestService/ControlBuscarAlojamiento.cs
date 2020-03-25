@@ -5,6 +5,9 @@ using System.Web;
 using Dominio.EntidadesDelDominio.Entidades;
 using Negocio.ControlRepository;
 
+using APIRest.ExcepcionesAPIRestService;
+
+
 using APIRest.IServices;
 using Newtonsoft.Json.Linq;
 
@@ -39,7 +42,10 @@ namespace APIRest.APIRestService
         /// <returns>Objeto tipo arrendador con todos sus atributos: cédula,nombre,apellidos,edad...</returns>
         public Arrendador ConsultarInformacionArrendador(string cedulaArrendador)
         {
-            return control.ConsultarInformacionArrendador(cedulaArrendador);
+
+            string cedula = cedulaArrendador.Trim();
+            return control.ConsultarInformacionArrendador(cedula);
+
         }
 
         /// <summary>
@@ -61,25 +67,34 @@ namespace APIRest.APIRestService
         /// <returns>Colección de objetos JObject (JSON) con las habitaciones que cumplen el criterio de consulta</returns>
         public IList<JObject> ListarAlojamientos(string filtro)
         {
+
+            filtro = filtro.Trim();
             IList<JObject> alojamientosJSON = new List<JObject>();
+
             var alojamientos = control.ListarAlojamientos(filtro);
-
-            foreach (var item in alojamientos)
-            {
-                alojamientosJSON.Add(JObject.FromObject(new
+            if (alojamientos.Count > 0) {
+                foreach (var item in alojamientos)
                 {
-                    result = new
+                    alojamientosJSON.Add(JObject.FromObject(new
                     {
-                        idHabitacion = item.IdAlojamiento,
-                        titulo = item.Titulo,
-                        tipoAlojamiento = item.TipoAlojamiento,
-                        estado = item.Estado,
-                        precio = item.Precio
-                    }
-                }));
-
+                        result = new
+                        {
+                            idHabitacion = item.IdAlojamiento,
+                            titulo = item.Titulo,
+                            tipoAlojamiento = item.TipoAlojamiento,
+                            estado = item.Estado,
+                            precio = item.Precio
+                        }
+                    }));
+                }
+                return alojamientosJSON;
             }
-            return alojamientosJSON;
+            else
+            {
+                alojamientosJSON.Add(BuscarAlojamientoException.ArmarJSONInformacionException("sin resultados"));
+                return alojamientosJSON;
+            }
+            
         }
 
 
@@ -106,9 +121,17 @@ namespace APIRest.APIRestService
         {
             double promedio = this.ConsultarPromedioCalificaciones(idAlojamiento);
             Alojamiento alojamiento = this.ConsultarAlojamiento(idAlojamiento);
-            var arrendador = this.ConsultarInformacionArrendadorHabitacion(alojamiento.IdAlojamiento);
 
-            return ArmarJSONInformacion(promedio, alojamiento, arrendador);
+            if (alojamiento!=null)
+            {
+                var arrendador = this.ConsultarInformacionArrendadorHabitacion(alojamiento.IdAlojamiento);
+                return ArmarJSONInformacion(promedio, alojamiento, arrendador);
+            }
+            else
+            {
+                return BuscarAlojamientoException.ArmarJSONInformacionException("El alojamiento consultado no se encuentra registrado en la base de datos");
+            }
+            
         }
 
 
@@ -121,11 +144,9 @@ namespace APIRest.APIRestService
         /// <param name="arrendador"></param>
         /// <returns></returns>
         public JObject ArmarJSONInformacion(double promedioCalificacion, Alojamiento alojamiento,Arrendador arrendador)
-        {
-            
-            if (alojamiento != null)
-            {
-                
+
+        {       
+
                 return JObject.FromObject(new
                 {
                     alojamiento = new
@@ -144,19 +165,9 @@ namespace APIRest.APIRestService
                     calificacion = promedioCalificacion
 
                 });
-            }
-            else
-            {
-                return JObject.FromObject(new
-                {
-                    error = new
-                    {
-                        tipoError = 404,
-                        descripcion = "El alojamiento solicitado no existe o ya no se encuentra disponible :("
-                    }
-                });
 
-            }
+            
+
         }
 
     }

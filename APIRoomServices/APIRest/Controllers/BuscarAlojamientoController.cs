@@ -31,9 +31,10 @@ namespace APIRest.Controllers
 
         // GET api/values/5
         [HttpGet]
-        public string ConsultarInformacionAlojamiento(int id)
+        public JObject ConsultarInformacionAlojamiento(int id)
         {
-            return control.RetornarInformacionAlojamiento(id).ToString();
+            return control.RetornarInformacionAlojamiento(id);
+
         }
         
     }

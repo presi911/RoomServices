@@ -9,6 +9,5 @@ namespace Negocio.ControlRepository
 {
     class ControlRegistrarAlojamiento 
     {
-
     }
 }
