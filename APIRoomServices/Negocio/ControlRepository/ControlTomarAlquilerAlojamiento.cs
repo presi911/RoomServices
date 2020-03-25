@@ -113,6 +113,7 @@ namespace Negocio.ControlRepository
 
                     };
                     entidades.AlquilersAlojamientos.Add(alquila);
+                    entidades.SaveChanges();
 
                 }
                 return true;
