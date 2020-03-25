@@ -26,6 +26,7 @@ namespace Dominio.EntidadesDelDominio.Abstractas
 
         {
 
+
             Cedula = cedula;
             Nombre = nombre;
             Apellido = apellido;
