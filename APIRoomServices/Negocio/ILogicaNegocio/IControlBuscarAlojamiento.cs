@@ -56,5 +56,8 @@ namespace Negocio.ILogicaNegocio
         /// <returns>Objeto tipo arredador con todos sus atributos</returns>
         Arrendador ConsultarInformacionArrendadorHabitacion(int idAlojamiento);
 
+
+        List<AlbumFotografico> RetornarFotografiasAlojamiento(int idAlojamiento);
+
     }
 }

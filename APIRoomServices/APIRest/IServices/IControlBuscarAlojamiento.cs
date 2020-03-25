@@ -20,5 +20,7 @@ namespace APIRest.IServices
 
         JObject RetornarInformacionAlojamiento(int idHabitacion);
 
+        JObject RetornarFotografiasAlojamiento(int idAlojamiento);
+
     }
 }

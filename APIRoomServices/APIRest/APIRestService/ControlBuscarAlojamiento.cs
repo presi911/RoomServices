@@ -152,28 +152,55 @@ namespace APIRest.APIRestService
         /// <param name="arrendador"></param>
         /// <returns></returns>
         public JObject ArmarJSONInformacion(double promedioCalificacion, Alojamiento alojamiento,Arrendador arrendador)
-        {       
-                return JObject.FromObject(new
+        {
+            return JObject.FromObject(new
+            {
+                estatus = 200,
+                alojamiento = new
                 {
-                    estatus = 200,
-                    alojamiento = new
-                    {
-                        idAlojamiento = alojamiento.IdAlojamiento,
-                        titulo = alojamiento.Titulo,
-                        precio = alojamiento.Precio,
-                        estado = alojamiento.Estado
-                    },
-                    arrendador = new
-                    {
-                        id = arrendador.IdArrendador,
-                        nombre = arrendador.Nombre,
-                        apellido = arrendador.Apellido,
-                    },
-                    calificacion = promedioCalificacion
+                    idAlojamiento = alojamiento.IdAlojamiento,
+                    titulo = alojamiento.Titulo,
+                    precio = alojamiento.Precio,
+                    estado = alojamiento.Estado
+                },
+                arrendador = new
+                {
+                    id = arrendador.IdArrendador,
+                    nombre = arrendador.Nombre,
+                    apellido = arrendador.Apellido,
+                },
+                calificacion = promedioCalificacion,
+                fotografias = this.RetornarFotografiasAlojamiento(alojamiento.IdAlojamiento)
 
-                });
+            }) ;
 
         }
 
+        /// <summary>
+        /// Retorna una colección de fotografias referenciadas a una habitación, especificando como parámetro
+        /// el id de alojamiento
+        /// </summary>
+        /// <param name="idAlojamiento">Entero, identificador de alojamiento</param>
+        /// <returns>Objeto JSON con la información de las fotografías </returns>
+        public JObject RetornarFotografiasAlojamiento(int idAlojamiento)
+        {
+
+            var fotografias = control.RetornarFotografiasAlojamiento(idAlojamiento);
+            if (fotografias != null)
+            {
+                var coleccionFotos = fotografias.First();
+                return JObject.FromObject(new
+                {
+                    NombreArchivo= coleccionFotos.NombreArchivo,
+                    Formato= coleccionFotos.Formato,
+                    Ruta=coleccionFotos.RutaGuardado
+                });
+
+            }
+            else
+            {
+                return BuscarAlojamientoException.ArmarJSONInformacionException("sin archivos");
+            }
+        }
     }
 }

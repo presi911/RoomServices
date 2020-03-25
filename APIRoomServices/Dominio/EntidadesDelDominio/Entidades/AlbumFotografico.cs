@@ -8,10 +8,10 @@ namespace Dominio.EntidadesDelDominio.Entidades
 {
     public class AlbumFotografico
     {
-        int IdArchivo { get; }
-        string NombreArchivo { get; set; }
-        string Formato { get; set; }
-        string RutaGuardado { get; set; }
+        public int IdArchivo { get; }
+        public string NombreArchivo { get; set; }
+        public string Formato { get; set; }
+        public string RutaGuardado { get; set; }
 
         /// <summary>
         /// Permite instanciar la información correspondiente a una imagen de un alojamiento
@@ -24,6 +24,11 @@ namespace Dominio.EntidadesDelDominio.Entidades
             this.NombreArchivo = nombreArchivo;
             this.Formato = formato;
             this.RutaGuardado = rutaGuardado;
+        }
+
+        public AlbumFotografico()
+        {
+
         }
     }
 }

@@ -97,6 +97,51 @@ namespace Negocio.ControlRepository
         }
 
         /// <summary>
+        /// Retorna una colección de fotografías ingresando como parámetro el id de alojamiento
+        /// </summary>
+        /// <param name="idAlojamiento">identificador de habitación</param>
+        /// <returns></returns>
+        public List<AlbumFotografico> RetornarFotografiasAlojamiento(int idAlojamiento)
+        {
+            List<AlbumFotografico> lista = new List<AlbumFotografico>();
+            using (RoomServicesEntities entidades = new RoomServicesEntities())
+            {
+
+
+                var query = (from item in entidades.AlbumFotograficos
+                             where (item.idAlojamiento == idAlojamiento)
+                             select item).ToList();
+
+                if (query.Count() > 0)
+                {
+                    
+                    foreach (var item in query)
+                    {
+                        var fotografia = this.RetornarFotografia(item.idFotografia);
+                        lista.Add(new AlbumFotografico()
+                        {
+                            NombreArchivo= item.nombreArchivo,
+                            Formato= item.formato,
+                            RutaGuardado= item.rutaGuardado
+
+                        });
+
+                    }
+                    return lista;
+                }
+                else
+                {
+                    return null;
+                }
+
+
+
+            }
+        }
+
+
+
+        /// <summary>
         /// Permite realizar una consulta a una Calificación específica proporcionando como criterio el id de calificacíón
         /// </summary>
         /// <param name="idCalificacion">identificador de calificación</param>
@@ -107,6 +152,24 @@ namespace Negocio.ControlRepository
             {
                 var consulta = (from item in entidades.Calificaciones
                                 where (item.idCalificacion == idCalificacion)
+                                select item).First();
+                return consulta;
+            }
+
+        }
+
+
+        /// <summary>
+        /// Consulta y retorna una colección de fotografías indicando como parámetro de consulta el id de fotografía
+        /// </summary>
+        /// <param name="idFotografia">Entero, identificador de fotografía en la base de datos</param>
+        /// <returns>Colección de objetos tipo AlbumFotográfico con la información de fotografías</returns>
+        public AlbumFotograficos RetornarFotografia(int idFotografia)
+        {
+            using (RoomServicesEntities entidades = new RoomServicesEntities())
+            {
+                var consulta = (from item in entidades.AlbumFotograficos
+                                where (item.idFotografia == idFotografia)
                                 select item).First();
                 return consulta;
             }
