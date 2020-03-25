@@ -5,9 +5,6 @@ using System.Web;
 using Dominio.EntidadesDelDominio.Entidades;
 using Negocio.ControlRepository;
 
-using APIRest.ExcepcionesAPIRestService;
-
-
 using APIRest.IServices;
 using Newtonsoft.Json.Linq;
 
@@ -30,10 +27,7 @@ namespace APIRest.APIRestService
 
         public Arrendador ConsultarInformacionArrendador(string cedulaArrendador)
         {
-
-            string cedula = cedulaArrendador.Trim();
-            return control.ConsultarInformacionArrendador(cedula);
-
+            return control.ConsultarInformacionArrendador(cedulaArrendador);
         }
 
         public double ConsultarPromedioCalificaciones(int idHabitacion)
@@ -43,34 +37,25 @@ namespace APIRest.APIRestService
 
         public IList<JObject> ListarAlojamientos(string filtro)
         {
-
-            filtro = filtro.Trim();
             IList<JObject> alojamientosJSON = new List<JObject>();
-
             var alojamientos = control.ListarAlojamientos(filtro);
-            if (alojamientos.Count > 0) {
-                foreach (var item in alojamientos)
-                {
-                    alojamientosJSON.Add(JObject.FromObject(new
-                    {
-                        result = new
-                        {
-                            idHabitacion = item.IdAlojamiento,
-                            titulo = item.Titulo,
-                            tipoAlojamiento = item.TipoAlojamiento,
-                            estado = item.Estado,
-                            precio = item.Precio
-                        }
-                    }));
-                }
-                return alojamientosJSON;
-            }
-            else
+
+            foreach (var item in alojamientos)
             {
-                alojamientosJSON.Add(BuscarAlojamientoException.ArmarJSONInformacionException("sin resultados"));
-                return alojamientosJSON;
+                alojamientosJSON.Add(JObject.FromObject(new
+                {
+                    result = new
+                    {
+                        idHabitacion = item.IdAlojamiento,
+                        titulo = item.Titulo,
+                        tipoAlojamiento = item.TipoAlojamiento,
+                        estado = item.Estado,
+                        precio = item.Precio
+                    }
+                }));
+
             }
-            
+            return alojamientosJSON;
         }
 
         public Arrendador ConsultarInformacionArrendadorHabitacion(int IdAlojamiento)
@@ -84,17 +69,9 @@ namespace APIRest.APIRestService
         {
             double promedio = this.ConsultarPromedioCalificaciones(idAlojamiento);
             Alojamiento alojamiento = this.ConsultarAlojamiento(idAlojamiento);
+            var arrendador = this.ConsultarInformacionArrendadorHabitacion(alojamiento.IdAlojamiento);
 
-            if (alojamiento!=null)
-            {
-                var arrendador = this.ConsultarInformacionArrendadorHabitacion(alojamiento.IdAlojamiento);
-                return ArmarJSONInformacion(promedio, alojamiento, arrendador);
-            }
-            else
-            {
-                return BuscarAlojamientoException.ArmarJSONInformacionException("El alojamiento consultado no se encuentra registrado en la base de datos");
-            }
-            
+            return ArmarJSONInformacion(promedio, alojamiento, arrendador);
         }
 
 
@@ -107,9 +84,11 @@ namespace APIRest.APIRestService
         /// <param name="arrendador"></param>
         /// <returns></returns>
         public JObject ArmarJSONInformacion(double promedioCalificacion, Alojamiento alojamiento,Arrendador arrendador)
-
-        {       
-
+        {
+            
+            if (alojamiento != null)
+            {
+                
                 return JObject.FromObject(new
                 {
                     alojamiento = new
@@ -128,9 +107,19 @@ namespace APIRest.APIRestService
                     calificacion = promedioCalificacion
 
                 });
+            }
+            else
+            {
+                return JObject.FromObject(new
+                {
+                    error = new
+                    {
+                        tipoError = 404,
+                        descripcion = "El alojamiento solicitado no existe o ya no se encuentra disponible :("
+                    }
+                });
 
-            
-
+            }
         }
 
     }
