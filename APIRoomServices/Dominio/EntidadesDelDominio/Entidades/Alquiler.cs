@@ -13,7 +13,7 @@ namespace Dominio.EntidadesDelDominio.Entidades
         public  byte numeroMeses;
         public Alojamiento alojamiento;
         double pagoMensual;
-
+        public DateTime fechaAlquiler;
 
         public Alquiler(DateTime fechaAlquiler, int numeroContrato, byte numeroMeses, double pagoMensual)
         {

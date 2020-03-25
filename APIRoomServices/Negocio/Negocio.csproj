@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControlExcepciones\ControlBuscarAlojamientoException.cs" />
+    <Compile Include="ControlExcepciones\ControlTomarAlquilerAlojamientoException.cs" />
     <Compile Include="ControlRepository\ControlBuscarAlojamiento.cs" />
     <Compile Include="ControlRepository\ControlLogueoUsuario.cs" />
     <Compile Include="ControlRepository\ControlRegistrarAlojamiento.cs" />
