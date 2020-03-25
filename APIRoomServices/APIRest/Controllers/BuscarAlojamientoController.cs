@@ -28,6 +28,7 @@ namespace APIRest.Controllers
             
         }
 
+
         // GET api/values/5
         [HttpGet]
         public string ConsultarInformacionAlojamiento(int id)
