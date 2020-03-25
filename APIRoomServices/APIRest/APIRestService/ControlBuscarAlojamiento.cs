@@ -23,6 +23,7 @@ namespace APIRest.APIRestService
 
         }
 
+
         
         /// <summary>
         /// Consulta y retorna un objeto tipo alojamiento proporcionando como criterio de consulta su ID.
@@ -33,6 +34,7 @@ namespace APIRest.APIRestService
         {
             return control.ConsultarAlojamiento(idAlojamiento);
         }
+
 
 
         /// <summary>
@@ -48,6 +50,8 @@ namespace APIRest.APIRestService
 
         }
 
+
+
         /// <summary>
         /// Calcula y retorna el promedio de las calificaciones que se han realizado a una habitación proporcionando
         /// como parámetro el id de la habitación a la cual se desea consultar el promedio.
@@ -58,6 +62,8 @@ namespace APIRest.APIRestService
         {
             return control.PromedioCalificaciones(idHabitacion);
         }
+
+
 
         /// <summary>
         /// Consulta y retorna una colección de alojamientos en formato JSON (JOBJECT) especificando como parámetro
@@ -77,6 +83,7 @@ namespace APIRest.APIRestService
                 {
                     alojamientosJSON.Add(JObject.FromObject(new
                     {
+                        estatus = 200,
                         result = new
                         {
                             idHabitacion = item.IdAlojamiento,
@@ -96,6 +103,7 @@ namespace APIRest.APIRestService
             }
             
         }
+
 
 
         /// <summary>
@@ -149,6 +157,7 @@ namespace APIRest.APIRestService
 
                 return JObject.FromObject(new
                 {
+                    estatus = 200,
                     alojamiento = new
                     {
                         idAlojamiento = alojamiento.IdAlojamiento,

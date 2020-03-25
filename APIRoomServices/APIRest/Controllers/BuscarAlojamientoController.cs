@@ -18,7 +18,12 @@ namespace APIRest.Controllers
             control = new APIRestService.ControlBuscarAlojamiento();
         }
 
-
+        /// <summary>
+        /// A partir de un criterio de búsqueda específicado por el usuario, consulta y retorna una lista de alojamientos
+        /// que cumplen con el criterio específicado
+        /// </summary>
+        /// <param name="filtro">Cadena, Criterio de consulta específicado por el usuario</param>
+        /// <returns>Lista de Objetos JObject (JSON) con la información básica de los alojamientos encontrados</returns>
         // GET api/values
         [HttpGet]
         public IList<JObject> GetConsultarAlojamientos(string filtro)
@@ -28,7 +33,12 @@ namespace APIRest.Controllers
             
         }
 
-
+        /// <summary>
+        /// Consulta en el repositorio y retorna la información completa de un alojamiento proporcionando como criterio de 
+        /// consulta el id de habitación
+        /// </summary>
+        /// <param name="id">Entero, identificador de habitación</param>
+        /// <returns>Objeto JObject (JSON) con la información del alojamiento, arrendador, calificacion...</returns>
         // GET api/values/5
         [HttpGet]
         public JObject ConsultarInformacionAlojamiento(int id)
