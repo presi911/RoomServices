@@ -67,6 +67,7 @@ namespace Negocio.ControlRepository
                     };
 
                     entidades.Usuarios.Add(usuario);
+                    entidades.SaveChanges();
                     return true;
                 }
                 else

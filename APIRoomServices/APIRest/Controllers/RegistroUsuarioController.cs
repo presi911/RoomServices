@@ -30,9 +30,9 @@ namespace APIRest.Controllers
 
 
         // POST: api/RegistroUsuario
-        public void Post(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, char genero)
+        public Boolean Post(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, char genero)
         {
-            control.RegistrarUsuario(cedula, nombre, apellido, fecha, nacionalidad, genero);
+            return control.RegistrarUsuario(cedula, nombre, apellido, fecha, nacionalidad, genero);
         }
 
     }
