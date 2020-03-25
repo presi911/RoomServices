@@ -7,7 +7,8 @@ using Negocio.ILogicaNegocio;
 
 namespace Negocio.ControlRepository
 {
-    class ControlRegistrarAlojamiento : IControlRegistrarUsuario
+    class ControlRegistrarAlojamiento 
     {
+
     }
 }

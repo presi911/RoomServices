@@ -21,18 +21,10 @@ namespace Dominio.EntidadesDelDominio.Entidades
         /// <param name="fecha"></param>
         /// <param name="nacionalidad"></param>
         /// <param name="genero"></param>
-
-        public Arrendador(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, string genero) :
-
+        public Arrendador(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, char genero) :
             base(cedula, nombre, apellido, fecha, nacionalidad, genero)
         {
 
         }
-
-        public Arrendador()
-        {
-
-        }
-
     }
 }
