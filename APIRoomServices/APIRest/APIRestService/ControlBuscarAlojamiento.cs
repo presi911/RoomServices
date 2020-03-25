@@ -144,9 +144,7 @@ namespace APIRest.APIRestService
         /// <param name="arrendador"></param>
         /// <returns></returns>
         public JObject ArmarJSONInformacion(double promedioCalificacion, Alojamiento alojamiento,Arrendador arrendador)
-
         {       
-
                 return JObject.FromObject(new
                 {
                     alojamiento = new

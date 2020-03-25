@@ -46,7 +46,7 @@ namespace Negocio.ControlRepository
         /// <param name="cedulaUsuario">Parámetro númerico con la cedula a  consultar en la base de datos</param>
         /// <returns>Valor tipo booleano </returns>
 
-        public Boolean RegistrarUsuario(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, char genero)
+        public Boolean RegistrarUsuario(string cedula, string nombre, string apellido, DateTime? fecha, string nacionalidad, char genero, string email, string contrasena)
         {
 
             using (RoomServicesEntities entidades = new RoomServicesEntities())
@@ -62,12 +62,24 @@ namespace Negocio.ControlRepository
                         apellido = apellido,
                         fechaNacimiento = fecha,
                         nacionalidad = nacionalidad,
-                        genero = char.ToString(genero)
+                        genero = char.ToString(genero),
 
+                        
                     };
-
                     entidades.Usuarios.Add(usuario);
                     entidades.SaveChanges();
+                    CuentasUsuarios cuenta = new CuentasUsuarios()
+                    {
+                        cedulaUsuario= usuario.cedula,
+                        email = email,
+                        contrasena = contrasena,
+
+                    };
+                    entidades.CuentasUsuarios.Add(cuenta);
+                   
+                
+                    entidades.SaveChanges();
+
                     return true;
                 }
                 else
