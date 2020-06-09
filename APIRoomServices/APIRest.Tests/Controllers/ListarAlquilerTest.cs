@@ -7,7 +7,7 @@ using Negocio.ControlRepository;
 namespace APIRest.Tests.Controllers
 {
     [TestClass]
-    public class ListarAlquiler
+    public class ListarAlquilerTest
     {
         /*
          * Probamos el método de listar alquiler actualmente
