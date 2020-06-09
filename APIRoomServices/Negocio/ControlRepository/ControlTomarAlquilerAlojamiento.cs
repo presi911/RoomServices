@@ -62,10 +62,12 @@ namespace Negocio.ControlRepository
 
         /// <summary>
         /// Permite retornar la información de un Arrendador propocionando como parametro el su cédula
+        /// Cristian
         /// </summary>
         /// <param name="cedula">cadena, cédula del usuario arrendador</param>
         /// <returns>objeto tipo Arrendador con la persona que ha publicado el anuncio</returns>
         /// 
+
         public Arrendador listaArredandor(string cedula)
         {
             using(RoomServicesEntities entidades = new RoomServicesEntities())
@@ -88,6 +90,8 @@ namespace Negocio.ControlRepository
                 return listaArredador.First();
             }
         }
+
+
 
         /// <summary>
         /// Permite retornar la información de un Arrendadorio propocionando como parametro el su cédula
